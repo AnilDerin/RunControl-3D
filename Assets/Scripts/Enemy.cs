@@ -23,9 +23,7 @@ public class Enemy : MonoBehaviour
     void LateUpdate()
     {
         if (isAttacking)
-        {
             _NavMesh.SetDestination(Target.transform.position);
-        }
     }
 
     void OnTriggerEnter(Collider other)

@@ -45,24 +45,20 @@ public class GameManager : MonoBehaviour
                 foreach (var item in Enemies)
                 {
                     if (item.activeInHierarchy)
-                    {
                         item.GetComponent<Animator>().SetBool("AttackEnemy", false);
-                    }
                 }
                 foreach (var item in Characters)
                 {
                     if (item.activeInHierarchy)
-                    {
+
                         item.GetComponent<Animator>().SetBool("Attack", false);
-                    }
                 }
 
                 _Player.GetComponent<Animator>().SetBool("Attack", false);
 
                 if (CurrentCharCount < enemyCount || CurrentCharCount == enemyCount)
-                {
+
                     Debug.Log("You Lose");
-                }
                 else if (CurrentCharCount >= enemyCount)
                 {
                     Debug.Log("You Win!");
@@ -77,7 +73,6 @@ public class GameManager : MonoBehaviour
         {
             case "Carpma":
                 Matematiksel_islemler.Carpma(GelenSayi, Characters, Posizyon, SpawnEffects);
-
                 break;
 
             case "Toplama":
