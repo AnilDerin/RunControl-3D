@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-
     public GameObject Target;
     public bool isAttacking = false;
     public GameManager _gm;
@@ -13,16 +12,14 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent _NavMesh;
     public Animator _Anim;
 
+    void Start() { }
 
-    void Start()
-    {
-
-    }
     public void TriggerAnimation()
     {
         isAttacking = true;
         _Anim.SetBool("AttackEnemy", true);
     }
+
     void LateUpdate()
     {
         if (isAttacking)
@@ -30,6 +27,7 @@ public class Enemy : MonoBehaviour
             _NavMesh.SetDestination(Target.transform.position);
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("BottomPlayers"))
@@ -37,7 +35,6 @@ public class Enemy : MonoBehaviour
             Vector3 yeniPoz = new Vector3(transform.position.x, .23f, transform.position.z);
             _gm.CreateDestroyEffect(yeniPoz, false, true);
             gameObject.SetActive(false);
-
         }
     }
 }

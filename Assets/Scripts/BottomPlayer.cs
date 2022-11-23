@@ -4,19 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class BottomPlayer : MonoBehaviour
-
 {
-
-
     NavMeshAgent _Navmesh;
     public GameManager _gm;
     public GameObject Target;
 
-
     void Start()
     {
         _Navmesh = GetComponent<NavMeshAgent>();
-
     }
 
     // Update is called once per frame
@@ -26,13 +21,11 @@ public class BottomPlayer : MonoBehaviour
             _Navmesh.SetDestination(Target.transform.position);
         else
             _Navmesh.isStopped = true;
-
     }
 
     Vector3 GivePosition()
     {
         return new Vector3(transform.position.x, .23f, transform.position.z);
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +37,6 @@ public class BottomPlayer : MonoBehaviour
         }
         else if (other.CompareTag("Testere"))
         {
-
             _gm.CreateDestroyEffect(GivePosition());
             gameObject.SetActive(false);
         }
@@ -52,26 +44,22 @@ public class BottomPlayer : MonoBehaviour
         {
             _gm.CreateDestroyEffect(GivePosition());
             gameObject.SetActive(false);
-
         }
         else if (other.CompareTag("Balyoz"))
         {
             _gm.CreateDestroyEffect(GivePosition(), true);
             gameObject.SetActive(false);
-
         }
         else if (other.CompareTag("Enemy"))
         {
             _gm.CreateDestroyEffect(GivePosition(), false, false);
             gameObject.SetActive(false);
-
         }
         else if (other.CompareTag("EmptyChars"))
         {
             _gm.Characters.Add(other.gameObject);
             GameManager.CurrentCharCount++;
             other.gameObject.tag = "BottomPlayers";
-
         }
     }
 }

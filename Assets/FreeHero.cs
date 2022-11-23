@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class FreeHero : MonoBehaviour
 {
-
     public NavMeshAgent _Navmesh;
     public SkinnedMeshRenderer _Renderer;
     public Material _Mat;
@@ -18,16 +17,9 @@ public class FreeHero : MonoBehaviour
     {
         if (isTouching)
             _Navmesh.SetDestination(Target.transform.position);
-
-
     }
 
-
-    void Start()
-    {
-
-    }
-
+    void Start() { }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,18 +27,14 @@ public class FreeHero : MonoBehaviour
         {
             ChangeMaterialAndAnimationTrigger();
             isTouching = true;
-
-
         }
         else if (other.CompareTag("Enemy"))
         {
             Vector3 newPos = new Vector3(transform.position.x, .23f, transform.position.z);
             _gm.CreateDestroyEffect(newPos, false, false);
             gameObject.SetActive(false);
-
         }
     }
-
 
     void ChangeMaterialAndAnimationTrigger()
     {
@@ -54,7 +42,5 @@ public class FreeHero : MonoBehaviour
         mats[0] = _Mat;
         _Renderer.materials = mats;
         _Animator.SetBool("Attack", true);
-
     }
-
 }

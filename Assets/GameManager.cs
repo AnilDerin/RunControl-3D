@@ -12,13 +12,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> DeathStains;
     public GameObject _Player;
 
-
     public static int CurrentCharCount;
-
-
-
-
-
 
     [Header("Level Data")]
     public List<GameObject> Enemies;
@@ -39,18 +33,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
+    void Update() { }
 
     void FightStatus()
     {
-
         if (isEndLine)
         {
-
-
             if (CurrentCharCount == 1 || enemyCount == 0)
             {
                 isGameEnded = true;
@@ -73,27 +61,14 @@ public class GameManager : MonoBehaviour
 
                 if (CurrentCharCount < enemyCount || CurrentCharCount == enemyCount)
                 {
-
                     Debug.Log("You Lose");
-
                 }
                 else if (CurrentCharCount >= enemyCount)
                 {
-
                     Debug.Log("You Win!");
-
                 }
             }
         }
-
-
-
-
-
-
-
-
-
     }
 
     public void AdamYonetimi(string islemTuru, int GelenSayi, Transform Posizyon)
@@ -102,7 +77,6 @@ public class GameManager : MonoBehaviour
         {
             case "Carpma":
                 Matematiksel_islemler.Carpma(GelenSayi, Characters, Posizyon, SpawnEffects);
-
 
                 break;
 
@@ -154,11 +128,7 @@ public class GameManager : MonoBehaviour
 
         if (!isGameEnded)
             FightStatus();
-
     }
-
-
-
 
     public void TriggerEnemies()
     {
@@ -175,8 +145,4 @@ public class GameManager : MonoBehaviour
         isEndLine = true;
         FightStatus();
     }
-
-
-
-
 }

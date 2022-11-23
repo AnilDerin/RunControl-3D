@@ -8,7 +8,6 @@ public class Pervane : MonoBehaviour
     public Animator animator;
     public float SecondsOfWait;
 
-
     public void AnimationStatus(string status)
     {
         if (status == "true")
@@ -26,9 +25,7 @@ public class Pervane : MonoBehaviour
 
     IEnumerator TriggerAnim()
     {
-
         yield return new WaitForSeconds(SecondsOfWait);
         AnimationStatus("true");
-
     }
 }
