@@ -17,6 +17,7 @@ TagManager:
   - Enemy
   - EndGameTrigger
   - Direk
+  - EmptyChars
   layers:
   - Default
   - TransparentFX

@@ -6,16 +6,16 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-
+    public List<GameObject> Characters;
     public List<GameObject> SpawnEffects;
     public List<GameObject> DestroyEffects;
     public List<GameObject> DeathStains;
-
+    public GameObject _Player;
 
 
     public static int CurrentCharCount;
-    public List<GameObject> Characters;
-    public GameObject _Player;
+
+
 
 
 
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
                         item.GetComponent<Animator>().SetBool("Attack", false);
                     }
                 }
+
                 _Player.GetComponent<Animator>().SetBool("Attack", false);
 
                 if (CurrentCharCount < enemyCount || CurrentCharCount == enemyCount)
@@ -101,8 +102,8 @@ public class GameManager : MonoBehaviour
         {
             case "Carpma":
                 Matematiksel_islemler.Carpma(GelenSayi, Characters, Posizyon, SpawnEffects);
-                
-                
+
+
                 break;
 
             case "Toplama":

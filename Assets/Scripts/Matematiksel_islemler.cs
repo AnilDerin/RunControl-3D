@@ -10,7 +10,17 @@ namespace Anil
         public static void Carpma(int GelenSayi, List<GameObject> Characters, Transform Posizyon, List<GameObject> SpawnEffects)
         {
 
-            int DonguSayisi = (GameManager.CurrentCharCount * GelenSayi) - GameManager.CurrentCharCount;
+
+
+
+
+            int DonguSayisi;
+            if (GameManager.CurrentCharCount == 0)
+                DonguSayisi = (GameManager.CurrentCharCount + 1);
+            else
+                DonguSayisi = (GameManager.CurrentCharCount * GelenSayi) - GameManager.CurrentCharCount;
+
+
             int sayi = 0;
             foreach (var item in Characters)
             {
@@ -74,7 +84,8 @@ namespace Anil
 
             }
             GameManager.CurrentCharCount *= GelenSayi;
-            //Debug.Log(GameManager.CurrentCharCount);
+            Debug.Log("Gelen Sayı  : " + GelenSayi);
+            Debug.Log("Anlık Karakter Sayısı : " + GameManager.CurrentCharCount);
 
 
         }
@@ -118,6 +129,8 @@ namespace Anil
 
             }
             GameManager.CurrentCharCount += GelenSayi;
+            Debug.Log("Gelen Sayı : " + GelenSayi);
+            Debug.Log("Anlık Karakter Sayısı : " + GameManager.CurrentCharCount);
 
 
 

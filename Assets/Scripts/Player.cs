@@ -62,6 +62,18 @@ public class Player : MonoBehaviour
             _GameManager.TriggerEnemies();
             isEnded = true;
         }
+        else if (other.CompareTag("EmptyChars"))
+        {
+            _GameManager.Characters.Add(other.gameObject);
+
+            if (GameManager.CurrentCharCount == 0)
+                GameManager.CurrentCharCount += 2;
+            else
+                GameManager.CurrentCharCount++;
+
+            other.gameObject.tag = "BottomPlayers";
+            Debug.Log("Anlık Karakter Sayısı " + GameManager.CurrentCharCount);
+        }
 
     }
     private void OnCollisionEnter(Collision collision)

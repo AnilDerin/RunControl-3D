@@ -66,5 +66,12 @@ public class BottomPlayer : MonoBehaviour
             gameObject.SetActive(false);
 
         }
+        else if (other.CompareTag("EmptyChars"))
+        {
+            _gm.Characters.Add(other.gameObject);
+            GameManager.CurrentCharCount++;
+            other.gameObject.tag = "BottomPlayers";
+
+        }
     }
 }
