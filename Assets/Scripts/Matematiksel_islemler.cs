@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Anil
 {
-    public class Matematiksel_islemler : MonoBehaviour
+    public class MathOps : MonoBehaviour
     {
-        public static void Carpma(
-            int GelenSayi,
+        public static void Multiply(
+            int GivenNumber,
             List<GameObject> Characters,
             Transform Posizyon,
             List<GameObject> SpawnEffects
@@ -18,7 +18,7 @@ namespace Anil
                 DonguSayisi = (GameManager.CurrentCharCount + 1);
             else
                 DonguSayisi =
-                    (GameManager.CurrentCharCount * GelenSayi) - GameManager.CurrentCharCount;
+                    (GameManager.CurrentCharCount * GivenNumber) - GameManager.CurrentCharCount;
 
             int sayi = 0;
             foreach (var item in Characters)
@@ -71,13 +71,13 @@ namespace Anil
                     }
                 }
             }
-            GameManager.CurrentCharCount *= GelenSayi;
-            Debug.Log("Gelen Sayı  : " + GelenSayi);
+            GameManager.CurrentCharCount *= GivenNumber;
+            Debug.Log("Gelen Sayı  : " + GivenNumber);
             Debug.Log("Anlık Karakter Sayısı : " + GameManager.CurrentCharCount);
         }
 
-        public static void Toplama(
-            int GelenSayi,
+        public static void Add(
+            int GivenNumber,
             List<GameObject> Characters,
             Transform Posizyon,
             List<GameObject> SpawnEffects
@@ -86,7 +86,7 @@ namespace Anil
             int sayi2 = 0;
             foreach (var item in Characters)
             {
-                if (sayi2 < GelenSayi)
+                if (sayi2 < GivenNumber)
                 {
                     if (!item.activeInHierarchy)
                     {
@@ -113,18 +113,18 @@ namespace Anil
                     break;
                 }
             }
-            GameManager.CurrentCharCount += GelenSayi;
-            Debug.Log("Gelen Sayı : " + GelenSayi);
+            GameManager.CurrentCharCount += GivenNumber;
+            Debug.Log("Gelen Sayı : " + GivenNumber);
             Debug.Log("Anlık Karakter Sayısı : " + GameManager.CurrentCharCount);
         }
 
-        public static void Cikarma(
-            int GelenSayi,
+        public static void Subtract(
+            int GivenNumber,
             List<GameObject> Characters,
             List<GameObject> DestroyEffects
         )
         {
-            if (GameManager.CurrentCharCount < GelenSayi)
+            if (GameManager.CurrentCharCount < GivenNumber)
             {
                 foreach (var item in Characters)
                 {
@@ -155,7 +155,7 @@ namespace Anil
                 int sayi3 = 0;
                 foreach (var item in Characters)
                 {
-                    if (sayi3 != GelenSayi)
+                    if (sayi3 != GivenNumber)
                     {
                         if (item.activeInHierarchy)
                         {
@@ -187,17 +187,17 @@ namespace Anil
                         break;
                     }
                 }
-                GameManager.CurrentCharCount -= GelenSayi;
+                GameManager.CurrentCharCount -= GivenNumber;
             }
         }
 
-        public static void Bolme(
-            int GelenSayi,
+        public static void Divide(
+            int GivenNumber,
             List<GameObject> Characters,
             List<GameObject> DestroyEffects
         )
         {
-            if (GameManager.CurrentCharCount <= GelenSayi)
+            if (GameManager.CurrentCharCount <= GivenNumber)
             {
                 foreach (var item in Characters)
                 {
@@ -208,7 +208,7 @@ namespace Anil
             }
             else
             {
-                int bolen = GameManager.CurrentCharCount / GelenSayi;
+                int bolen = GameManager.CurrentCharCount / GivenNumber;
 
                 int sayi3 = 0;
                 foreach (var item in Characters)
@@ -230,16 +230,16 @@ namespace Anil
                     }
                 }
 
-                if (GameManager.CurrentCharCount % GelenSayi == 0)
-                    GameManager.CurrentCharCount /= GelenSayi;
-                else if (GameManager.CurrentCharCount % GelenSayi == 1)
+                if (GameManager.CurrentCharCount % GivenNumber == 0)
+                    GameManager.CurrentCharCount /= GivenNumber;
+                else if (GameManager.CurrentCharCount % GivenNumber == 1)
                 {
-                    GameManager.CurrentCharCount /= GelenSayi;
+                    GameManager.CurrentCharCount /= GivenNumber;
                     GameManager.CurrentCharCount++;
                 }
-                else if (GameManager.CurrentCharCount % GelenSayi == 2)
+                else if (GameManager.CurrentCharCount % GivenNumber == 2)
                 {
-                    GameManager.CurrentCharCount /= GelenSayi;
+                    GameManager.CurrentCharCount /= GivenNumber;
                     GameManager.CurrentCharCount += 2;
                 }
             }

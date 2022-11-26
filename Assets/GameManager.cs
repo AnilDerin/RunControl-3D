@@ -67,24 +67,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AdamYonetimi(string islemTuru, int GelenSayi, Transform Posizyon)
+    public void MathLogics(string islemTuru, int GelenSayi, Transform Posizyon)
     {
         switch (islemTuru)
         {
             case "Carpma":
-                Matematiksel_islemler.Carpma(GelenSayi, Characters, Posizyon, SpawnEffects);
+                MathOps.Multiply(GelenSayi, Characters, Posizyon, SpawnEffects);
                 break;
 
             case "Toplama":
-                Matematiksel_islemler.Toplama(GelenSayi, Characters, Posizyon, SpawnEffects);
+                MathOps.Add(GelenSayi, Characters, Posizyon, SpawnEffects);
                 break;
 
             case "Cikarma":
-                Matematiksel_islemler.Cikarma(GelenSayi, Characters, DestroyEffects);
+                MathOps.Subtract(GelenSayi, Characters, DestroyEffects);
                 break;
 
             case "Bolme":
-                Matematiksel_islemler.Bolme(GelenSayi, Characters, DestroyEffects);
+                MathOps.Divide(GelenSayi, Characters, DestroyEffects);
                 break;
         }
     }
@@ -108,14 +108,14 @@ public class GameManager : MonoBehaviour
 
         if (Balyoz)
         {
-            Vector3 yeniPoz = new Vector3(Posizyon.x, .005f, Posizyon.z);
+            Vector3 newPos = new Vector3(Posizyon.x, .005f, Posizyon.z);
 
             foreach (var item in DeathStains)
             {
                 if (!item.activeInHierarchy)
                 {
                     item.SetActive(true);
-                    item.transform.position = yeniPoz;
+                    item.transform.position = newPos;
                     break;
                 }
             }

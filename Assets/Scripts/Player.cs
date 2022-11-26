@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         )
         {
             int number = int.Parse(other.name);
-            _GameManager.AdamYonetimi(other.tag, number, other.transform);
+            _GameManager.MathLogics(other.tag, number, other.transform);
             other.GetComponent<BoxCollider>().enabled = false;
         }
         else if (other.CompareTag("EndGameTrigger"))
