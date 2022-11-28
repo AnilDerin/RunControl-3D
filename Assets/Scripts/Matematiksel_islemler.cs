@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Anil
 {
-    public class MathOps : MonoBehaviour
+    public class MathOps
     {
-        public static void Multiply(
+        public void Multiply(
             int GivenNumber,
             List<GameObject> Characters,
             Transform Posizyon,
@@ -82,7 +82,7 @@ namespace Anil
             GameManager.CurrentCharCount *= GivenNumber;
         }
 
-        public static void Add(
+        public void Add(
             int GivenNumber,
             List<GameObject> Characters,
             Transform Posizyon,
@@ -123,7 +123,7 @@ namespace Anil
             GameManager.CurrentCharCount += GivenNumber;
         }
 
-        public static void Subtract(
+        public void Subtract(
             int GivenNumber,
             List<GameObject> Characters,
             List<GameObject> DestroyEffects
@@ -198,7 +198,7 @@ namespace Anil
             }
         }
 
-        public static void Divide(
+        public void Divide(
             int GivenNumber,
             List<GameObject> Characters,
             List<GameObject> DestroyEffects
@@ -283,6 +283,42 @@ namespace Anil
                     GameManager.CurrentCharCount += 2;
                 }
             }
+        }
+    }
+
+    public class MemoryManagement
+    {
+        public void SaveData_String(string Key, string value)
+        {
+            PlayerPrefs.SetString(Key, value);
+            PlayerPrefs.Save();
+        }
+
+        public void SaveData_Int(string Key, int value)
+        {
+            PlayerPrefs.SetInt(Key, value);
+            PlayerPrefs.Save();
+        }
+
+        public void SaveData_Float(string Key, float value)
+        {
+            PlayerPrefs.SetFloat(Key, value);
+            PlayerPrefs.Save();
+        }
+
+        public string ReadData_s(string Key)
+        {
+            return PlayerPrefs.GetString(Key);
+        }
+
+        public int ReadData_i(string Key)
+        {
+            return PlayerPrefs.GetInt(Key);
+        }
+
+        public float ReadData_f(string Key)
+        {
+            return PlayerPrefs.GetFloat(Key);
         }
     }
 }

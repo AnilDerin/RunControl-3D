@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public bool isGameEnded;
     bool isEndLine;
 
+    MathOps _MathOps = new MathOps();
+    MemoryManagement _MemoryManage = new MemoryManagement();
+
     void Start()
     {
         CreateEnemies();
@@ -32,8 +35,6 @@ public class GameManager : MonoBehaviour
             Enemies[i].SetActive(true);
         }
     }
-
-    void Update() { }
 
     void FightStatus()
     {
@@ -72,19 +73,19 @@ public class GameManager : MonoBehaviour
         switch (islemTuru)
         {
             case "Carpma":
-                MathOps.Multiply(GelenSayi, Characters, Posizyon, SpawnEffects);
+                _MathOps.Multiply(GelenSayi, Characters, Posizyon, SpawnEffects);
                 break;
 
             case "Toplama":
-                MathOps.Add(GelenSayi, Characters, Posizyon, SpawnEffects);
+                _MathOps.Add(GelenSayi, Characters, Posizyon, SpawnEffects);
                 break;
 
             case "Cikarma":
-                MathOps.Subtract(GelenSayi, Characters, DestroyEffects);
+                _MathOps.Subtract(GelenSayi, Characters, DestroyEffects);
                 break;
 
             case "Bolme":
-                MathOps.Divide(GelenSayi, Characters, DestroyEffects);
+                _MathOps.Divide(GelenSayi, Characters, DestroyEffects);
                 break;
         }
     }
