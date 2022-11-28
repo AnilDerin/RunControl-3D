@@ -19,20 +19,51 @@ public class FreeHero : MonoBehaviour
             _Navmesh.SetDestination(Target.transform.position);
     }
 
-    void Start() { }
+    Vector3 GivePosition()
+    {
+        return new Vector3(transform.position.x, .23f, transform.position.z);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("BottomPlayers") || other.CompareTag("Player"))
         {
-            ChangeMaterialAndAnimationTrigger();
-            isTouching = true;
+            if (gameObject.CompareTag("EmptyChars"))
+            {
+                ChangeMaterialAndAnimationTrigger();
+                GetComponent<AudioSource>().Play();
+                isTouching = true;
+            }
+        }
+        else if (other.CompareTag("igneliKutu"))
+        {
+            _gm.CreateDestroyEffect(GivePosition());
+            gameObject.SetActive(false);
+        }
+        else if (other.CompareTag("Testere"))
+        {
+            _gm.CreateDestroyEffect(GivePosition());
+            gameObject.SetActive(false);
+        }
+        else if (other.CompareTag("PervaneIgneler"))
+        {
+            _gm.CreateDestroyEffect(GivePosition());
+            gameObject.SetActive(false);
+        }
+        else if (other.CompareTag("Balyoz"))
+        {
+            _gm.CreateDestroyEffect(GivePosition(), true);
+            gameObject.SetActive(false);
         }
         else if (other.CompareTag("Enemy"))
         {
-            Vector3 newPos = new Vector3(transform.position.x, .23f, transform.position.z);
-            _gm.CreateDestroyEffect(newPos, false, false);
+            _gm.CreateDestroyEffect(GivePosition(), false, false);
             gameObject.SetActive(false);
+        }
+        else if (other.CompareTag("LastTriggerForFreeHeroes"))
+        {
+            GetComponent<NavMeshAgent>().isStopped = true;
+            GetComponent<Animator>().SetBool("Attack", false);
         }
     }
 
@@ -41,6 +72,12 @@ public class FreeHero : MonoBehaviour
         Material[] mats = _Renderer.materials;
         mats[0] = _Mat;
         _Renderer.materials = mats;
+
         _Animator.SetBool("Attack", true);
+        gameObject.tag = "BottomPlayers";
+        if (GameManager.CurrentCharCount == 0)
+            GameManager.CurrentCharCount += 2;
+        else
+            GameManager.CurrentCharCount++;
     }
 }

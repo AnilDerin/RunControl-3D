@@ -37,7 +37,7 @@ namespace Anil
                                     item2.SetActive(true);
                                     item2.transform.position = Posizyon.position;
                                     item2.GetComponent<ParticleSystem>().Play();
-
+                                    item2.GetComponent<AudioSource>().Play();
                                     break;
                                 }
                             }
@@ -57,11 +57,19 @@ namespace Anil
                 {
                     if (sayi < DonguSayisi)
                     {
-                        if (!item.activeInHierarchy)
+                        foreach (var item2 in SpawnEffects)
                         {
-                            item.transform.position = Posizyon.position - new Vector3(0, 0, 0.2f);
-                            item.SetActive(true);
-                            sayi++;
+                            if (!item.activeInHierarchy)
+                            {
+                                item.transform.position =
+                                    Posizyon.position - new Vector3(0, 0, 0.2f);
+                                item.SetActive(true);
+                                item2.SetActive(true);
+                                item2.GetComponent<ParticleSystem>().Play();
+                                item2.GetComponent<AudioSource>().Play();
+                                sayi++;
+                                break;
+                            }
                         }
                     }
                     else
@@ -72,8 +80,6 @@ namespace Anil
                 }
             }
             GameManager.CurrentCharCount *= GivenNumber;
-            Debug.Log("Gelen Sayı  : " + GivenNumber);
-            Debug.Log("Anlık Karakter Sayısı : " + GameManager.CurrentCharCount);
         }
 
         public static void Add(
@@ -97,6 +103,7 @@ namespace Anil
                                 item2.SetActive(true);
                                 item2.transform.position = Posizyon.position;
                                 item2.GetComponent<ParticleSystem>().Play();
+                                item2.GetComponent<AudioSource>().Play();
 
                                 break;
                             }
@@ -114,8 +121,6 @@ namespace Anil
                 }
             }
             GameManager.CurrentCharCount += GivenNumber;
-            Debug.Log("Gelen Sayı : " + GivenNumber);
-            Debug.Log("Anlık Karakter Sayısı : " + GameManager.CurrentCharCount);
         }
 
         public static void Subtract(
@@ -140,6 +145,7 @@ namespace Anil
                             item2.SetActive(true);
                             item2.transform.position = yeniPoz;
                             item2.GetComponent<ParticleSystem>().Play();
+                            item2.GetComponent<AudioSource>().Play();
 
                             break;
                         }
@@ -171,6 +177,7 @@ namespace Anil
                                     item2.SetActive(true);
                                     item2.transform.position = yeniPoz;
                                     item2.GetComponent<ParticleSystem>().Play();
+                                    item2.GetComponent<AudioSource>().Play();
 
                                     break;
                                 }
@@ -201,9 +208,26 @@ namespace Anil
             {
                 foreach (var item in Characters)
                 {
+                    foreach (var item2 in DestroyEffects)
+                    {
+                        if (!item2.activeInHierarchy)
+                        {
+                            Vector3 newPos = new Vector3(
+                                item.transform.position.x,
+                                .23f,
+                                item.transform.position.z
+                            );
+                            item2.SetActive(true);
+                            item2.transform.position = newPos;
+                            item2.GetComponent<ParticleSystem>().Play();
+                            item2.GetComponent<AudioSource>().Play();
+                            break;
+                        }
+                    }
                     item.transform.position = Vector3.zero;
                     item.SetActive(false);
                 }
+
                 GameManager.CurrentCharCount = 1;
             }
             else
@@ -218,6 +242,22 @@ namespace Anil
                     {
                         if (item.activeInHierarchy)
                         {
+                            foreach (var item2 in DestroyEffects)
+                            {
+                                if (!item2.activeInHierarchy)
+                                {
+                                    Vector3 newPos = new Vector3(
+                                        item.transform.position.x,
+                                        .23f,
+                                        item.transform.position.z
+                                    );
+                                    item2.SetActive(true);
+                                    item2.transform.position = newPos;
+                                    item2.GetComponent<ParticleSystem>().Play();
+                                    item2.GetComponent<AudioSource>().Play();
+                                    break;
+                                }
+                            }
                             item.transform.position = Vector3.zero;
                             item.SetActive(false);
                             sayi3++;

@@ -18,6 +18,7 @@ TagManager:
   - EndGameTrigger
   - Direk
   - EmptyChars
+  - LastTriggerForFreeHeroes
   layers:
   - Default
   - TransparentFX

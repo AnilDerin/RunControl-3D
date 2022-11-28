@@ -58,8 +58,6 @@ public class BottomPlayer : MonoBehaviour
         else if (other.CompareTag("EmptyChars"))
         {
             _gm.Characters.Add(other.gameObject);
-            GameManager.CurrentCharCount++;
-            other.gameObject.tag = "BottomPlayers";
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +9,14 @@ public class Player : MonoBehaviour
     public bool isEnded;
     public GameObject FinalPos;
     public Cam _cam;
+    public Slider _slider;
+    public GameObject TargetDestination;
+
+    void Start()
+    {
+        float Diff = Vector3.Distance(transform.position, TargetDestination.transform.position);
+        _slider.maxValue = Diff;
+    }
 
     void FixedUpdate()
     {
@@ -25,9 +34,14 @@ public class Player : MonoBehaviour
                 FinalPos.transform.position,
                 .02f
             );
+            if (_slider.value != 0)
+                _slider.value -= .01f;
         }
         else
         {
+            float Diff = Vector3.Distance(transform.position, TargetDestination.transform.position);
+            _slider.value = Diff;
+
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 if (Input.GetAxis("Mouse X") < 0)
@@ -81,14 +95,6 @@ public class Player : MonoBehaviour
         else if (other.CompareTag("EmptyChars"))
         {
             _GameManager.Characters.Add(other.gameObject);
-
-            if (GameManager.CurrentCharCount == 0)
-                GameManager.CurrentCharCount += 2;
-            else
-                GameManager.CurrentCharCount++;
-
-            other.gameObject.tag = "BottomPlayers";
-            Debug.Log("Anlık Karakter Sayısı " + GameManager.CurrentCharCount);
         }
     }
 
