@@ -60,9 +60,21 @@ public class GameManager : MonoBehaviour
                 if (CurrentCharCount < enemyCount || CurrentCharCount == enemyCount)
 
                     Debug.Log("You Lose");
-                else if (CurrentCharCount >= enemyCount)
+                else
                 {
-                    Debug.Log("You Win!");
+                    if ((CurrentCharCount > 5))
+                        _MemoryManage.SaveData_Int(
+                            "Score",
+                            _MemoryManage.ReadData_i("Score") + 600
+                        );
+                    else
+                    {
+                        _MemoryManage.SaveData_Int(
+                            "Score",
+                            _MemoryManage.ReadData_i("Score") + 200
+                        );
+                        Debug.Log("You Win!");
+                    }
                 }
             }
         }

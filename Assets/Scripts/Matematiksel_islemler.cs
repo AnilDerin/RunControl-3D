@@ -320,5 +320,14 @@ namespace Anil
         {
             return PlayerPrefs.GetFloat(Key);
         }
+
+        public void CheckAndDefine()
+        {
+            if (!PlayerPrefs.HasKey("LastPlayed"))
+            {
+                PlayerPrefs.SetInt("LastPlayed", 5);
+                PlayerPrefs.SetInt("Score", 100);
+            }
+        }
     }
 }
