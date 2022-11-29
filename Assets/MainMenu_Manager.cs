@@ -28,15 +28,12 @@ public class MainMenu_Manager : MonoBehaviour
         SceneManager.LoadScene(_MemManage.ReadData_i("LastPlayed"));
     }
 
-    public void Exit()
-    {
-        QuitPanel.SetActive(true);
-    }
-
     public void QuitButtonBehavior(string behavior)
     {
         if (behavior == "Yes")
             Application.Quit();
+        else if (behavior == "Exit")
+            QuitPanel.SetActive(true);
         else
         {
             QuitPanel.SetActive(false);
