@@ -125,8 +125,6 @@ QualitySettings:
     customRenderPipeline: {fileID: 0}
     excludedTargetPlatforms:
     - WebGL
-    - Standalone
-    - Server
   - serializedVersion: 2
     name: High
     pixelLightCount: 2
@@ -256,9 +254,9 @@ QualitySettings:
     Nintendo Switch: 5
     PS4: 5
     PS5: 5
-    Server: 5
+    Server: 2
     Stadia: 5
-    Standalone: 5
+    Standalone: 2
     WebGL: 5
     Windows Store Apps: 5
     XboxOne: 5
