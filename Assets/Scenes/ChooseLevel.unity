@@ -3607,7 +3607,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7677cd6bca3e7347830883ef3ba7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelButtons: []
+  LevelButtons:
+  - {fileID: 591831793}
+  - {fileID: 824689904}
+  - {fileID: 1022231450}
+  - {fileID: 2052376422}
+  - {fileID: 1166002235}
+  - {fileID: 1994482259}
+  - {fileID: 1321656102}
+  - {fileID: 684602230}
+  - {fileID: 546016725}
+  - {fileID: 1939940990}
+  - {fileID: 294415239}
+  - {fileID: 611321403}
+  - {fileID: 1493883347}
+  - {fileID: 2130534131}
+  - {fileID: 1969191124}
+  - {fileID: 1306346043}
+  - {fileID: 157774569}
+  - {fileID: 767055227}
+  - {fileID: 1936649133}
+  - {fileID: 2087894995}
   Level: 8
   LockedButtonImage: {fileID: 21300000, guid: 26d09472ea05fa344aece3f121b2c0b2, type: 3}
 --- !u!4 &1211985113
@@ -5432,9 +5452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5461,7 +5479,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 86
+  m_fontSize: 64
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -8,13 +8,9 @@ public class Wind : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-
-
         if (other.CompareTag("BottomPlayers"))
         {
             other.GetComponent<Rigidbody>().AddForce(new Vector3(-5, 0, 0), ForceMode.Impulse);
         }
-
-
     }
 }
