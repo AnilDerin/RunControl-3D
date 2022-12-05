@@ -9,7 +9,6 @@ public class Cam : MonoBehaviour
     public bool isGameEnded;
     public GameObject LastCamLocation;
 
-
     void Start()
     {
         target_offset = transform.position - target.position;
@@ -19,8 +18,16 @@ public class Cam : MonoBehaviour
     void LateUpdate()
     {
         if (!isGameEnded)
-            transform.position = Vector3.Lerp(transform.position, target.position + target_offset, .125f);
+            transform.position = Vector3.Lerp(
+                transform.position,
+                target.position + target_offset,
+                .120f
+            );
         else
-            transform.position = Vector3.Lerp(transform.position, LastCamLocation.transform.position, .02f);
+            transform.position = Vector3.Lerp(
+                transform.position,
+                LastCamLocation.transform.position,
+                .02f
+            );
     }
 }
