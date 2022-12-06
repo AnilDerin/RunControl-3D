@@ -14,7 +14,6 @@ public class BottomPlayer : MonoBehaviour
         _Navmesh = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         if (_gm.enemyCount != 0)
