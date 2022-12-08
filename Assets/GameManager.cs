@@ -63,15 +63,25 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     if ((CurrentCharCount > 5))
+                    {
                         _MemoryManage.SaveData_Int(
                             "Score",
                             _MemoryManage.ReadData_i("Score") + 600
                         );
+                        _MemoryManage.SaveData_Int(
+                            "LastPlayed",
+                            _MemoryManage.ReadData_i("LastPlayed" + 1)
+                        );
+                    }
                     else
                     {
                         _MemoryManage.SaveData_Int(
                             "Score",
                             _MemoryManage.ReadData_i("Score") + 200
+                        );
+                        _MemoryManage.SaveData_Int(
+                            "LastPlayed",
+                            _MemoryManage.ReadData_i("LastPlayed" + 1)
                         );
                         Debug.Log("You Win!");
                     }
