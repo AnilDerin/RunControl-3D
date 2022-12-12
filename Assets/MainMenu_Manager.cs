@@ -10,7 +10,7 @@ public class MainMenu_Manager : MonoBehaviour
 
     public GameObject QuitPanel;
 
-    //MathOps _MathOps = new MathOps();
+    MathOps _MathOps = new MathOps();
 
     // Start is called before the first frame update
     void Start()
