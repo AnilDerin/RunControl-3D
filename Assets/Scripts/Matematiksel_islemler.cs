@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Anil
 {
@@ -328,6 +331,53 @@ namespace Anil
                 PlayerPrefs.SetInt("LastPlayed", 5);
                 PlayerPrefs.SetInt("Score", 10);
             }
+        }
+    }
+
+    public class UserData
+    {
+        public static List<ItemData> _ItemData = new List<ItemData>();
+    }
+
+    [Serializable]
+    public class ItemData
+    {
+        public int GroupIndex;
+        public int Item_Index;
+        public string Item_Name;
+        public int Score;
+        public bool BuyStatus;
+    }
+
+    public class DataManagement
+    {
+        public void Save(List<ItemData> _ItemData)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + "/ItemData.gd");
+            bf.Serialize(file, _ItemData);
+            file.Close();
+        }
+
+        List<ItemData> _ItemInnerData;
+
+        public void Load()
+        {
+            if (File.Exists(Application.persistentDataPath + "/ItemData.gd"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(
+                    Application.persistentDataPath + "/ItemData.gd",
+                    FileMode.Open
+                );
+                _ItemInnerData = (List<ItemData>)bf.Deserialize(file);
+                file.Close();
+            }
+        }
+
+        public List<ItemData> ExportList()
+        {
+            return _ItemInnerData;
         }
     }
 }

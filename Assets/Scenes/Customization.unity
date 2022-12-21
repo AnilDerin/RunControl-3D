@@ -2308,6 +2308,7 @@ MonoBehaviour:
   - {fileID: 919132147485655960}
   - {fileID: 919132148070020021}
   Materials: []
+  _ItemData: []
 --- !u!1 &149834048107551490
 GameObject:
   m_ObjectHideFlags: 0
