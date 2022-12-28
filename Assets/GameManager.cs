@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                             "LastPlayed",
                             _MemoryManage.ReadData_i("LastPlayed" + 1)
                         );
-                        Debug.Log("You Win!");
+                        Debug.Log("You Win");
                     }
                 }
             }
