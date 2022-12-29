@@ -7,8 +7,9 @@ using Anil;
 public class MainMenu_Manager : MonoBehaviour
 {
     MemoryManagement _MemManage = new MemoryManagement();
-
+    DataManagement _ItemData = new DataManagement();
     public GameObject QuitPanel;
+    public List<ItemData> _ItemInfo = new List<ItemData>();
 
     MathOps _MathOps = new MathOps();
 
@@ -16,6 +17,7 @@ public class MainMenu_Manager : MonoBehaviour
     void Start()
     {
         _MemManage.CheckAndDefine();
+        //_ItemData.FirstBuildUp(_ItemInfo); set active at end!
     }
 
     public void LoadScene(int Index)

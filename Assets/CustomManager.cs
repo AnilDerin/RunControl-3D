@@ -101,6 +101,7 @@ public class CustomManager : MonoBehaviour
             else
             {
                 HatButtons[0].interactable = false;
+                HatText.text = "No Hat";
             }
             if (HatIndex != Hats.Length - 1)
             {

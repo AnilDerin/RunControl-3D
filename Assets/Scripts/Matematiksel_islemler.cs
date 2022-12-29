@@ -354,9 +354,20 @@ namespace Anil
         public void Save(List<ItemData> _ItemData)
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/ItemData.gd");
+            FileStream file = File.OpenWrite(Application.persistentDataPath + "/ItemData.gd");
             bf.Serialize(file, _ItemData);
             file.Close();
+        }
+
+        public void FirstBuildUp(List<ItemData> _ItemData)
+        {
+            if (!File.Exists(Application.persistentDataPath + "/ItemData.gd"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Create(Application.persistentDataPath + "/ItemData.gd");
+                bf.Serialize(file, _ItemData);
+                file.Close();
+            }
         }
 
         List<ItemData> _ItemInnerData;
