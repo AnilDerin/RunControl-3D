@@ -11,6 +11,10 @@ public class CustomManager : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI HatText;
+    public GameObject[] opPanels;
+    public GameObject opCanvas;
+    public GameObject[] generalObjects;
+    int activeOpIndex;
 
     [Header("HATS")]
     public GameObject[] Hats;
@@ -109,5 +113,22 @@ public class CustomManager : MonoBehaviour
             }
         }
         Debug.Log(HatIndex);
+    }
+
+    public void opShowPanel(int Index)
+    {
+        generalObjects[2].SetActive(true);
+        activeOpIndex = Index;
+        opPanels[Index].SetActive(true);
+        generalObjects[3].SetActive(true);
+        opCanvas.SetActive(false);
+    }
+
+    public void GoBack()
+    {
+        generalObjects[2].SetActive(false);
+        opCanvas.SetActive(true);
+        generalObjects[3].SetActive(false);
+         opPanels[activeOpIndex].SetActive(false);
     }
 }
