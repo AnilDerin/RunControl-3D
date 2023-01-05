@@ -1048,7 +1048,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2131697630}
         m_TargetAssemblyTypeName: CustomManager, Assembly-CSharp
-        m_MethodName: ChangeHat
+        m_MethodName: ChangeMat
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1391,7 +1391,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2131697630}
         m_TargetAssemblyTypeName: CustomManager, Assembly-CSharp
-        m_MethodName: ChangeHat
+        m_MethodName: ChangeMat
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3559,7 +3559,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2131697630}
         m_TargetAssemblyTypeName: CustomManager, Assembly-CSharp
-        m_MethodName: ChangeHat
+        m_MethodName: ChangeBat
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3827,7 +3827,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2131697630}
         m_TargetAssemblyTypeName: CustomManager, Assembly-CSharp
-        m_MethodName: ChangeHat
+        m_MethodName: ChangeBat
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5738,7 +5738,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1581501873}
-  HatText: {fileID: 367591298}
   opPanels:
   - {fileID: 1970704999}
   - {fileID: 816901753}
@@ -5756,11 +5755,27 @@ MonoBehaviour:
   HatButtons:
   - {fileID: 1319622265}
   - {fileID: 278203649}
+  HatText: {fileID: 367591298}
   Bats:
   - {fileID: 919132149212747382}
   - {fileID: 919132147485655960}
   - {fileID: 919132148070020021}
-  Materials: []
+  BatButtons:
+  - {fileID: 1322541193}
+  - {fileID: 1216628221}
+  BatText: {fileID: 833384971}
+  Mats:
+  - {fileID: 2100000, guid: 1c6a1a7adaf94c44a83af9c4a87fbe8f, type: 2}
+  - {fileID: 2100000, guid: 1cc1f73c81ea32943ba84fe3c218c031, type: 2}
+  - {fileID: 2100000, guid: 8a9193f746d8616489dbaeeb7314fdff, type: 2}
+  - {fileID: 2100000, guid: a1341b8a1d7329541847304948fc0e7b, type: 2}
+  - {fileID: 2100000, guid: ee9e772410bb83242801d16387bc46f5, type: 2}
+  DefaultMat: {fileID: 2100000, guid: afefbca8dfec44145aae8bdf4c2154c5, type: 2}
+  MatButtons:
+  - {fileID: 336602382}
+  - {fileID: 440085531}
+  MatText: {fileID: 1126871658}
+  _Renderer: {fileID: 785809371560355849}
   _ItemData: []
 --- !u!1 &149834048107551490
 GameObject:

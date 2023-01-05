@@ -8,6 +8,8 @@ public class MainMenu_Manager : MonoBehaviour
 {
     MemoryManagement _MemManage = new MemoryManagement();
     DataManagement _ItemData = new DataManagement();
+
+    
     public GameObject QuitPanel;
     public List<ItemData> _ItemInfo = new List<ItemData>();
 
