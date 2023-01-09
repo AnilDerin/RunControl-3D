@@ -9,7 +9,7 @@ public class MainMenu_Manager : MonoBehaviour
     MemoryManagement _MemManage = new MemoryManagement();
     DataManagement _ItemData = new DataManagement();
 
-    
+
     public GameObject QuitPanel;
     public List<ItemData> _ItemInfo = new List<ItemData>();
 
@@ -29,7 +29,9 @@ public class MainMenu_Manager : MonoBehaviour
 
     public void Play()
     {
+        Debug.Log(_MemManage.ReadData_i("LastPlayed"));
         SceneManager.LoadScene(_MemManage.ReadData_i("LastPlayed"));
+        Debug.Log(_MemManage.ReadData_i("LastPlayed"));
     }
 
     public void QuitButtonBehavior(string behavior)

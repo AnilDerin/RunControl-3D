@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using Anil;
@@ -13,7 +14,12 @@ public class CustomManager : MonoBehaviour
 
     public GameObject[] opPanels;
     public GameObject opCanvas;
-    public GameObject[] generalObjects;
+
+    public GameObject[] generalPanels;
+    public Button[] opButtons;
+
+    public TextMeshProUGUI BuyText;
+
     int activeOpIndex;
 
     [Header("HATS")]
@@ -45,58 +51,106 @@ public class CustomManager : MonoBehaviour
 
     void Start()
     {
-        _MemManage.SaveData_Int("ActiveHat", -1);
-        _MemManage.SaveData_Int("ActiveBat", -1);
-        _MemManage.SaveData_Int("ActiveMat", -1);
 
-        if (_MemManage.ReadData_i("ActiveHat") == -1)
-        {
-            foreach (var item in Hats)
-            {
-                item.SetActive(false);
-            }
-            HatIndex = -1;
-            HatText.text = "No Hat";
-        }
-        else
-        {
-            HatIndex = _MemManage.ReadData_i("ActiveHat");
-            Hats[HatIndex].SetActive(true);
-        }
+        _MemManage.SaveData_Int("Score", 10000);
+        //_MemManage.SaveData_Int("LastPlayed", 5);
+        ScoreText.text = _MemManage.ReadData_i("Score").ToString();
 
-        if (_MemManage.ReadData_i("ActiveBat") == -1)
-        {
-            foreach (var item in Bats)
-            {
-                item.SetActive(false);
-            }
-            BatIndex = -1;
-            BatText.text = "No Bat";
-        }
-        else
-        {
-            BatIndex = _MemManage.ReadData_i("ActiveBat");
-            Bats[BatIndex].SetActive(true);
-        }
 
-        if (_MemManage.ReadData_i("ActiveMat") == -1)
-        {
-            MatIndex = -1;
-            MatText.text = "No Theme";
-        }
-        else
-        {
-            MatIndex = _MemManage.ReadData_i("ActiveMat");
-            Material[] matties = _Renderer.materials;
-            matties[0] = Mats[0];
-            _Renderer.materials = matties;
-        }
-
-        //_DataManage.Save(_ItemData);
 
         _DataManage.Load();
         _ItemData = _DataManage.ExportList();
+
+        //CheckStatus(0, true);
+        //CheckStatus(1, true);
+        //CheckStatus(2, true);
+
     }
+
+    void CheckStatus(int Section, bool operation = false)
+    {
+        if (Section == 0)
+        {
+            if (_MemManage.ReadData_i("ActiveHat") == -1)
+            {
+                foreach (var item in Hats)
+                {
+                    item.SetActive(false);
+                }
+                opButtons[0].interactable = false;
+                opButtons[1].interactable = false;
+
+                if (!operation)
+                {
+                    HatIndex = -1;
+                    HatText.text = "No Hat";
+                }
+
+
+            }
+            else
+            {
+                HatIndex = _MemManage.ReadData_i("ActiveHat");
+                Hats[HatIndex].SetActive(true);
+            }
+        }
+        else if (Section == 1)
+        {
+            if (_MemManage.ReadData_i("ActiveBat") == -1)
+            {
+                foreach (var item in Bats)
+                {
+                    item.SetActive(false);
+                }
+                opButtons[0].interactable = false;
+                opButtons[1].interactable = false;
+
+                if (!operation)
+                {
+                    BatIndex = -1;
+                    BatText.text = "No Bat";
+                }
+
+            }
+            else
+            {
+                BatIndex = _MemManage.ReadData_i("ActiveBat");
+                Bats[BatIndex].SetActive(true);
+
+            }
+        }
+
+        else
+        {
+            if (_MemManage.ReadData_i("ActiveMat") == -1)
+            {
+
+                if (!operation)
+                {
+                    MatIndex = -1;
+                    MatText.text = "No Theme";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = false;
+                }
+                else
+                {
+                    Material[] matties = _Renderer.materials;
+                    matties[0] = DefaultMat;
+                    _Renderer.materials = matties;
+                }
+
+            }
+            else
+            {
+                MatIndex = _MemManage.ReadData_i("ActiveMat");
+                Material[] matties = _Renderer.materials;
+                matties[0] = Mats[MatIndex];
+                _Renderer.materials = matties;
+
+            }
+        }
+    }
+
 
     public void ChangeHat(string op)
     {
@@ -107,6 +161,25 @@ public class CustomManager : MonoBehaviour
                 HatIndex = 0;
                 Hats[HatIndex].SetActive(true);
                 HatText.text = _ItemData[HatIndex].Item_Name;
+
+                if (!_ItemData[HatIndex].BuyStatus)
+                {
+                    BuyText.text = "BUY -  " + _ItemData[HatIndex].Score;
+                    opButtons[1].interactable = false;
+
+                    if (_MemManage.ReadData_i("Score") < _ItemData[HatIndex].Score)
+                        opButtons[0].interactable = false;
+                    else
+                        opButtons[0].interactable = true;
+
+                }
+                else
+                {
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                }
+
             }
             else
             {
@@ -114,6 +187,23 @@ public class CustomManager : MonoBehaviour
                 HatIndex++;
                 Hats[HatIndex].SetActive(true);
                 HatText.text = _ItemData[HatIndex].Item_Name;
+
+                if (!_ItemData[HatIndex].BuyStatus)
+                {
+                    BuyText.text = "BUY -  " + _ItemData[HatIndex].Score;
+                    opButtons[1].interactable = false;
+                    if (_MemManage.ReadData_i("Score") < _ItemData[HatIndex].Score)
+                        opButtons[0].interactable = false;
+                    else
+                        opButtons[0].interactable = true;
+
+                }
+                else
+                {
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                }
             }
 
             if (HatIndex == Hats.Length - 1)
@@ -135,11 +225,28 @@ public class CustomManager : MonoBehaviour
                     Hats[HatIndex].SetActive(true);
                     HatButtons[0].interactable = true;
                     HatText.text = _ItemData[HatIndex].Item_Name;
+                    if (!_ItemData[HatIndex].BuyStatus)
+                    {
+                        BuyText.text = "BUY -  " + _ItemData[HatIndex].Score;
+                        opButtons[1].interactable = false;
+                        if (_MemManage.ReadData_i("Score") < _ItemData[HatIndex].Score)
+                            opButtons[0].interactable = false;
+                        else
+                            opButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        BuyText.text = "BUY";
+                        opButtons[0].interactable = false;
+                        opButtons[1].interactable = true;
+                    }
                 }
                 else
                 {
                     HatButtons[0].interactable = false;
                     HatText.text = "No Hat";
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
                 }
             }
             else
@@ -152,7 +259,6 @@ public class CustomManager : MonoBehaviour
                 HatButtons[1].interactable = true;
             }
         }
-        Debug.Log(HatIndex);
     }
 
     public void ChangeBat(string op)
@@ -164,6 +270,22 @@ public class CustomManager : MonoBehaviour
                 BatIndex = 0;
                 Bats[BatIndex].SetActive(true);
                 BatText.text = _ItemData[BatIndex + 3].Item_Name;
+
+                if (!_ItemData[BatIndex + 3].BuyStatus)
+                {
+                    BuyText.text = "BUY -  " + _ItemData[BatIndex + 3].Score;
+                    opButtons[1].interactable = false;
+                    if (_MemManage.ReadData_i("Score") < _ItemData[BatIndex + 3].Score)
+                        opButtons[0].interactable = false;
+                    else
+                        opButtons[0].interactable = true;
+                }
+                else
+                {
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                }
             }
             else
             {
@@ -171,6 +293,22 @@ public class CustomManager : MonoBehaviour
                 BatIndex++;
                 Bats[BatIndex].SetActive(true);
                 BatText.text = _ItemData[BatIndex + 3].Item_Name;
+
+                if (!_ItemData[BatIndex + 3].BuyStatus)
+                {
+                    BuyText.text = "BUY -  " + _ItemData[BatIndex + 3].Score;
+                    opButtons[1].interactable = false;
+                    if (_MemManage.ReadData_i("Score") < _ItemData[BatIndex + 3].Score)
+                        opButtons[0].interactable = false;
+                    else
+                        opButtons[0].interactable = true;
+                }
+                else
+                {
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                }
             }
 
             if (BatIndex == Bats.Length - 1)
@@ -192,24 +330,44 @@ public class CustomManager : MonoBehaviour
                     Bats[BatIndex].SetActive(true);
                     BatButtons[0].interactable = true;
                     BatText.text = _ItemData[BatIndex + 3].Item_Name;
+
+                    if (!_ItemData[BatIndex + 3].BuyStatus)
+                    {
+                        BuyText.text = "BUY -  " + _ItemData[BatIndex + 3].Score;
+                        opButtons[1].interactable = false;
+                        if (_MemManage.ReadData_i("Score") < _ItemData[BatIndex + 3].Score)
+                            opButtons[0].interactable = false;
+                        else
+                            opButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        BuyText.text = "BUY";
+                        opButtons[0].interactable = false;
+                        opButtons[1].interactable = true;
+                    }
                 }
                 else
                 {
                     BatButtons[0].interactable = false;
                     BatText.text = "No Bat";
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
                 }
             }
             else
             {
                 BatButtons[0].interactable = false;
                 BatText.text = "No Bat";
+                BuyText.text = "BUY";
+                opButtons[0].interactable = false;
             }
             if (BatIndex != Bats.Length - 1)
             {
                 BatButtons[1].interactable = true;
             }
         }
-        Debug.Log(BatIndex);
+        //Debug.Log(BatIndex);
     }
 
     public void ChangeMat(string op)
@@ -224,6 +382,22 @@ public class CustomManager : MonoBehaviour
                 _Renderer.materials = matties;
 
                 MatText.text = _ItemData[MatIndex + 6].Item_Name;
+
+                if (!_ItemData[MatIndex + 6].BuyStatus)
+                {
+                    BuyText.text = "BUY -  " + _ItemData[MatIndex + 6].Score;
+                    opButtons[1].interactable = false;
+                    if (_MemManage.ReadData_i("Score") < _ItemData[MatIndex + 6].Score)
+                        opButtons[0].interactable = false;
+                    else
+                        opButtons[0].interactable = true;
+                }
+                else
+                {
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                }
             }
             else
             {
@@ -233,6 +407,22 @@ public class CustomManager : MonoBehaviour
                 _Renderer.materials = matties;
 
                 MatText.text = _ItemData[MatIndex + 6].Item_Name;
+
+                if (!_ItemData[MatIndex + 6].BuyStatus)
+                {
+                    BuyText.text = "BUY -  " + _ItemData[MatIndex + 6].Score;
+                    opButtons[1].interactable = false;
+                    if (_MemManage.ReadData_i("Score") < _ItemData[MatIndex + 6].Score)
+                        opButtons[0].interactable = false;
+                    else
+                        opButtons[0].interactable = true;
+                }
+                else
+                {
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                }
             }
 
             if (MatIndex == Mats.Length - 1)
@@ -256,6 +446,22 @@ public class CustomManager : MonoBehaviour
 
                     MatButtons[0].interactable = true;
                     MatText.text = _ItemData[MatIndex + 6].Item_Name;
+
+                    if (!_ItemData[MatIndex + 6].BuyStatus)
+                    {
+                        BuyText.text = "BUY -  " + _ItemData[MatIndex + 6].Score;
+                        opButtons[1].interactable = false;
+                        if (_MemManage.ReadData_i("Score") < _ItemData[MatIndex + 6].Score)
+                            opButtons[0].interactable = false;
+                        else
+                            opButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        BuyText.text = "BUY";
+                        opButtons[0].interactable = false;
+                        opButtons[1].interactable = true;
+                    }
                 }
                 else
                 {
@@ -265,6 +471,8 @@ public class CustomManager : MonoBehaviour
 
                     MatButtons[0].interactable = false;
                     MatText.text = "No Theme";
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
                 }
             }
             else
@@ -275,29 +483,111 @@ public class CustomManager : MonoBehaviour
 
                 MatButtons[0].interactable = false;
                 MatText.text = "No Theme";
+                BuyText.text = "BUY";
+                opButtons[0].interactable = false;
             }
             if (MatIndex != Mats.Length - 1)
             {
                 MatButtons[1].interactable = true;
             }
         }
-        Debug.Log(MatIndex);
+        //Debug.Log(MatIndex);
+    }
+
+    public void BuyItem()
+    {
+        if (activeOpIndex != -1)
+        {
+            switch (activeOpIndex)
+            {
+                case 0:
+                    _ItemData[HatIndex].BuyStatus = true;
+                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[HatIndex].Score);
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+
+                    break;
+
+                case 1:
+                    _ItemData[BatIndex + 3].BuyStatus = true;
+                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[BatIndex + 3].Score);
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+                    break;
+
+                case 2:
+                    _ItemData[MatIndex + 6].BuyStatus = true;
+                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[MatIndex + 6].Score);
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+                    break;
+            }
+        }
+
+
+
+    }
+
+    public void SaveItem()
+    {
+        if (activeOpIndex != -1)
+        {
+            switch (activeOpIndex)
+            {
+                case 0:
+
+                    _MemManage.SaveData_Int("ActiveHat", HatIndex);
+                    break;
+
+                case 1:
+
+                    _MemManage.SaveData_Int("ActiveBat", BatIndex);
+                    break;
+
+                case 2:
+
+                    _MemManage.SaveData_Int("ActiveMat", MatIndex);
+                    break;
+            }
+        }
+
+
     }
 
     public void opShowPanel(int Index)
     {
-        generalObjects[2].SetActive(true);
+        CheckStatus(Index);
+        generalPanels[0].SetActive(true);
         activeOpIndex = Index;
         opPanels[Index].SetActive(true);
-        generalObjects[3].SetActive(true);
+        generalPanels[1].SetActive(true);
         opCanvas.SetActive(false);
     }
 
     public void GoBack()
     {
-        generalObjects[2].SetActive(false);
+
+        generalPanels[0].SetActive(false);
         opCanvas.SetActive(true);
-        generalObjects[3].SetActive(false);
+        generalPanels[1].SetActive(false);
         opPanels[activeOpIndex].SetActive(false);
+        CheckStatus(activeOpIndex, true);
+        activeOpIndex = -1;
+
+
+
     }
+
+    public void ReturnToMainMenu()
+    {
+        _DataManage.Save(_ItemData);
+        SceneManager.LoadScene(0);
+    }
+
 }
