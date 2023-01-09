@@ -54,8 +54,13 @@ public class CustomManager : MonoBehaviour
         _MemManage.SaveData_Int("Score", 10000);
         ScoreText.text = _MemManage.ReadData_i("Score").ToString();
 
+
+        //_DataManage.Save(_ItemData);
+
         _DataManage.Load();
         _ItemData = _DataManage.ExportList();
+
+
 
     }
 
@@ -444,6 +449,7 @@ public class CustomManager : MonoBehaviour
                 {
                     BuyText.text = "BUY -  " + _ItemData[MatIndex + 6].Score;
                     opButtons[1].interactable = false;
+
                     if (_MemManage.ReadData_i("Score") < _ItemData[MatIndex + 6].Score)
                         opButtons[0].interactable = false;
                     else
