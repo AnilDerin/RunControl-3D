@@ -51,19 +51,11 @@ public class CustomManager : MonoBehaviour
 
     void Start()
     {
-
         _MemManage.SaveData_Int("Score", 10000);
-        //_MemManage.SaveData_Int("LastPlayed", 5);
         ScoreText.text = _MemManage.ReadData_i("Score").ToString();
-
-
 
         _DataManage.Load();
         _ItemData = _DataManage.ExportList();
-
-        //CheckStatus(0, true);
-        //CheckStatus(1, true);
-        //CheckStatus(2, true);
 
     }
 
@@ -151,6 +143,71 @@ public class CustomManager : MonoBehaviour
         }
     }
 
+    public void BuyItem()
+    {
+        if (activeOpIndex != -1)
+        {
+            switch (activeOpIndex)
+            {
+                case 0:
+                    _ItemData[HatIndex].BuyStatus = true;
+                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[HatIndex].Score);
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+
+                    break;
+
+                case 1:
+                    _ItemData[BatIndex + 3].BuyStatus = true;
+                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[BatIndex + 3].Score);
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+                    break;
+
+                case 2:
+                    _ItemData[MatIndex + 6].BuyStatus = true;
+                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[MatIndex + 6].Score);
+                    BuyText.text = "BUY";
+                    opButtons[0].interactable = false;
+                    opButtons[1].interactable = true;
+                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+                    break;
+            }
+        }
+
+
+
+    }
+
+    public void SaveItem()
+    {
+        if (activeOpIndex != -1)
+        {
+            switch (activeOpIndex)
+            {
+                case 0:
+
+                    _MemManage.SaveData_Int("ActiveHat", HatIndex);
+                    break;
+
+                case 1:
+
+                    _MemManage.SaveData_Int("ActiveBat", BatIndex);
+                    break;
+
+                case 2:
+
+                    _MemManage.SaveData_Int("ActiveMat", MatIndex);
+                    break;
+            }
+        }
+
+
+    }
 
     public void ChangeHat(string op)
     {
@@ -492,72 +549,6 @@ public class CustomManager : MonoBehaviour
             }
         }
         //Debug.Log(MatIndex);
-    }
-
-    public void BuyItem()
-    {
-        if (activeOpIndex != -1)
-        {
-            switch (activeOpIndex)
-            {
-                case 0:
-                    _ItemData[HatIndex].BuyStatus = true;
-                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[HatIndex].Score);
-                    BuyText.text = "BUY";
-                    opButtons[0].interactable = false;
-                    opButtons[1].interactable = true;
-                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
-
-                    break;
-
-                case 1:
-                    _ItemData[BatIndex + 3].BuyStatus = true;
-                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[BatIndex + 3].Score);
-                    BuyText.text = "BUY";
-                    opButtons[0].interactable = false;
-                    opButtons[1].interactable = true;
-                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
-                    break;
-
-                case 2:
-                    _ItemData[MatIndex + 6].BuyStatus = true;
-                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[MatIndex + 6].Score);
-                    BuyText.text = "BUY";
-                    opButtons[0].interactable = false;
-                    opButtons[1].interactable = true;
-                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
-                    break;
-            }
-        }
-
-
-
-    }
-
-    public void SaveItem()
-    {
-        if (activeOpIndex != -1)
-        {
-            switch (activeOpIndex)
-            {
-                case 0:
-
-                    _MemManage.SaveData_Int("ActiveHat", HatIndex);
-                    break;
-
-                case 1:
-
-                    _MemManage.SaveData_Int("ActiveBat", BatIndex);
-                    break;
-
-                case 2:
-
-                    _MemManage.SaveData_Int("ActiveMat", MatIndex);
-                    break;
-            }
-        }
-
-
     }
 
     public void opShowPanel(int Index)
