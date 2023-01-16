@@ -51,7 +51,7 @@ public class CustomManager : MonoBehaviour
 
     void Start()
     {
-        _MemManage.SaveData_Int("Score", 10000);
+        //_MemManage.SaveData_Int("Score", 10000);
         ScoreText.text = _MemManage.ReadData_i("Score").ToString();
 
 
@@ -60,6 +60,9 @@ public class CustomManager : MonoBehaviour
         _DataManage.Load();
         _ItemData = _DataManage.ExportList();
 
+        CheckStatus(0, true);
+        CheckStatus(1, true);
+        CheckStatus(2, true);
 
 
     }
