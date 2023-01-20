@@ -15,11 +15,10 @@ public class MainMenu_Manager : MonoBehaviour
 
     MathOps _MathOps = new MathOps();
 
-    // Start is called before the first frame update
     void Start()
     {
         _MemManage.CheckAndDefine();
-        //_ItemData.FirstBuildUp(_ItemInfo); set active at end!
+        _ItemData.FirstBuildUp(_ItemInfo);
     }
 
     public void LoadScene(int Index)

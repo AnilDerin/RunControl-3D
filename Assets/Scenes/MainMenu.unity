@@ -1722,6 +1722,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QuitPanel: {fileID: 1008099635}
+  _ItemInfo:
+  - GroupIndex: 1
+    Item_Index: 0
+    Item_Name: Hat 1
+    Score: 100
+    BuyStatus: 0
+  - GroupIndex: 1
+    Item_Index: 1
+    Item_Name: Hat 2
+    Score: 150
+    BuyStatus: 0
+  - GroupIndex: 1
+    Item_Index: 2
+    Item_Name: Hat 3
+    Score: 200
+    BuyStatus: 0
+  - GroupIndex: 2
+    Item_Index: 0
+    Item_Name: Bat 1
+    Score: 100
+    BuyStatus: 0
+  - GroupIndex: 2
+    Item_Index: 1
+    Item_Name: Bat 2
+    Score: 150
+    BuyStatus: 0
+  - GroupIndex: 2
+    Item_Index: 2
+    Item_Name: Bat 3
+    Score: 200
+    BuyStatus: 0
+  - GroupIndex: 3
+    Item_Index: 0
+    Item_Name: Theme 1
+    Score: 100
+    BuyStatus: 0
+  - GroupIndex: 3
+    Item_Index: 1
+    Item_Name: Theme 2
+    Score: 150
+    BuyStatus: 0
+  - GroupIndex: 3
+    Item_Index: 2
+    Item_Name: Theme 3
+    Score: 200
+    BuyStatus: 0
+  - GroupIndex: 3
+    Item_Index: 3
+    Item_Name: Theme 4
+    Score: 250
+    BuyStatus: 0
+  - GroupIndex: 3
+    Item_Index: 4
+    Item_Name: Theme 5
+    Score: 300
+    BuyStatus: 0
 --- !u!4 &962926767
 Transform:
   m_ObjectHideFlags: 0
@@ -1977,7 +2033,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!95 &1069727440
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1994,7 +2050,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1570637071
 GameObject:
   m_ObjectHideFlags: 0

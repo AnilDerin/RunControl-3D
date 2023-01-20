@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> DeathStains;
     public GameObject _Player;
 
+
+
+
     public static int CurrentCharCount;
 
     [Header("Level Data")]
@@ -19,10 +22,25 @@ public class GameManager : MonoBehaviour
     public int enemyCount;
     public bool isGameEnded;
     bool isEndLine;
+    [Header("HATS")]
+    public GameObject[] Hats;
+
+    [Header("BATS")]
+    public GameObject[] Bats;
+
+    [Header("MATS")]
+    public Material[] Mats;
+    public SkinnedMeshRenderer _Renderer;
+    public Material DefaultMat;
 
     MathOps _MathOps = new MathOps();
     MemoryManagement _MemoryManage = new MemoryManagement();
 
+
+    void Awake()
+    {
+        CheckItems();
+    }
     void Start()
     {
         CreateEnemies();
@@ -164,4 +182,28 @@ public class GameManager : MonoBehaviour
         isEndLine = true;
         FightStatus();
     }
+
+    public void CheckItems()
+    {
+
+        if (_MemoryManage.ReadData_i("ActiveHat") != -1)
+            Hats[_MemoryManage.ReadData_i("ActiveHat")].SetActive(true);
+
+        if (_MemoryManage.ReadData_i("ActiveBat") != -1)
+            Bats[_MemoryManage.ReadData_i("ActiveBat")].SetActive(true);
+
+        if (_MemoryManage.ReadData_i("ActiveMat") != -1)
+        {
+            Material[] matties = _Renderer.materials;
+            matties[0] = Mats[_MemoryManage.ReadData_i("ActiveMat")];
+            _Renderer.materials = matties;
+        }
+        else
+        {
+            Material[] matties = _Renderer.materials;
+            matties[0] = DefaultMat;
+            _Renderer.materials = matties;
+        }
+    }
+
 }

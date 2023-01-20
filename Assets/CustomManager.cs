@@ -49,11 +49,11 @@ public class CustomManager : MonoBehaviour
     [Header("GENERAL DATA")]
     public List<ItemData> _ItemData = new List<ItemData>();
 
+    public Animator Saved_Anim;
+
     void Start()
     {
-        //_MemManage.SaveData_Int("Score", 10000);
         ScoreText.text = _MemManage.ReadData_i("Score").ToString();
-
 
         //_DataManage.Save(_ItemData);
 
@@ -63,7 +63,6 @@ public class CustomManager : MonoBehaviour
         CheckStatus(0, true);
         CheckStatus(1, true);
         CheckStatus(2, true);
-
 
     }
 
@@ -90,8 +89,19 @@ public class CustomManager : MonoBehaviour
             }
             else
             {
+
+                foreach (var item in Hats)
+                {
+                    item.SetActive(false);
+                }
+
                 HatIndex = _MemManage.ReadData_i("ActiveHat");
                 Hats[HatIndex].SetActive(true);
+
+                HatText.text = _ItemData[HatIndex].Item_Name;
+                BuyText.text = "BUY";
+                opButtons[0].interactable = false;
+                opButtons[1].interactable = true;
             }
         }
         else if (Section == 1)
@@ -114,8 +124,18 @@ public class CustomManager : MonoBehaviour
             }
             else
             {
+
+                foreach (var item in Bats)
+                {
+                    item.SetActive(false);
+                }
                 BatIndex = _MemManage.ReadData_i("ActiveBat");
                 Bats[BatIndex].SetActive(true);
+
+                BatText.text = _ItemData[BatIndex + 3].Item_Name;
+                BuyText.text = "BUY";
+                opButtons[0].interactable = false;
+                opButtons[1].interactable = true;
 
             }
         }
@@ -146,6 +166,12 @@ public class CustomManager : MonoBehaviour
                 Material[] matties = _Renderer.materials;
                 matties[0] = Mats[MatIndex];
                 _Renderer.materials = matties;
+
+
+                MatText.text = _ItemData[MatIndex + 6].Item_Name;
+                BuyText.text = "BUY";
+                opButtons[0].interactable = false;
+                opButtons[1].interactable = true;
 
             }
         }
@@ -200,16 +226,25 @@ public class CustomManager : MonoBehaviour
                 case 0:
 
                     _MemManage.SaveData_Int("ActiveHat", HatIndex);
+                    opButtons[1].interactable = false;
+                    if (!Saved_Anim.GetBool("isSaved"))
+                        Saved_Anim.SetBool("isSaved", true);
                     break;
 
                 case 1:
 
                     _MemManage.SaveData_Int("ActiveBat", BatIndex);
+                    opButtons[1].interactable = false;
+                    if (!Saved_Anim.GetBool("isSaved"))
+                        Saved_Anim.SetBool("isSaved", true);
                     break;
 
                 case 2:
 
                     _MemManage.SaveData_Int("ActiveMat", MatIndex);
+                    opButtons[1].interactable = false;
+                    if (!Saved_Anim.GetBool("isSaved"))
+                        Saved_Anim.SetBool("isSaved", true);
                     break;
             }
         }

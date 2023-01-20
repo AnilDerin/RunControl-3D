@@ -329,7 +329,10 @@ namespace Anil
             if (!PlayerPrefs.HasKey("LastPlayed"))
             {
                 PlayerPrefs.SetInt("LastPlayed", 5);
-                PlayerPrefs.SetInt("Score", 10);
+                PlayerPrefs.SetInt("Score", 100);
+                PlayerPrefs.SetInt("ActiveHat", -1);
+                PlayerPrefs.SetInt("ActiveBat", -1);
+                PlayerPrefs.SetInt("ActiveMat", -1);
             }
         }
     }

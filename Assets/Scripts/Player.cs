@@ -18,15 +18,14 @@ public class Player : MonoBehaviour
         _slider.maxValue = Diff;
     }
 
-    void FixedUpdate()
-    {
-        if (!isEnded)
-            transform.Translate(Vector3.forward * .9f * Time.deltaTime);
-    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
+        if (!isEnded)
+            transform.Translate(Vector3.forward * .9f * Time.deltaTime);
+
         if (isEnded)
         {
             transform.position = Vector3.Lerp(
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour
                             transform.position.y,
                             transform.position.z
                         ),
-                        .3f
+                        .4f
                     );
                 }
 
@@ -61,13 +60,7 @@ public class Player : MonoBehaviour
                 {
                     transform.position = Vector3.Lerp(
                         transform.position,
-                        new Vector3(
-                            Mathf.Clamp(transform.position.x, -1.1f, 1.1f) + .1f,
-                            transform.position.y,
-                            transform.position.z
-                        ),
-                        .3f
-                    );
+                        new Vector3(Mathf.Clamp(transform.position.x, -1.1f, 1.1f) + .1f, transform.position.y, transform.position.z), .4f);
                 }
             }
         }
