@@ -184,31 +184,15 @@ public class CustomManager : MonoBehaviour
             switch (activeOpIndex)
             {
                 case 0:
-                    _ItemData[HatIndex].BuyStatus = true;
-                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[HatIndex].Score);
-                    BuyText.text = "BUY";
-                    opButtons[0].interactable = false;
-                    opButtons[1].interactable = true;
-                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
-
+                    BuyResult(HatIndex);
                     break;
-
                 case 1:
-                    _ItemData[BatIndex + 3].BuyStatus = true;
-                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[BatIndex + 3].Score);
-                    BuyText.text = "BUY";
-                    opButtons[0].interactable = false;
-                    opButtons[1].interactable = true;
-                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+                    int Index = BatIndex + 3;
+                    BuyResult(Index);
                     break;
-
                 case 2:
-                    _ItemData[MatIndex + 6].BuyStatus = true;
-                    _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[MatIndex + 6].Score);
-                    BuyText.text = "BUY";
-                    opButtons[0].interactable = false;
-                    opButtons[1].interactable = true;
-                    ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+                    int Index_Mat = MatIndex + 6;
+                    BuyResult(Index_Mat);
                     break;
             }
         }
@@ -224,32 +208,18 @@ public class CustomManager : MonoBehaviour
             switch (activeOpIndex)
             {
                 case 0:
-
-                    _MemManage.SaveData_Int("ActiveHat", HatIndex);
-                    opButtons[1].interactable = false;
-                    if (!Saved_Anim.GetBool("isSaved"))
-                        Saved_Anim.SetBool("isSaved", true);
+                    SaveItemResult("ActiveHat", HatIndex);
                     break;
 
                 case 1:
-
-                    _MemManage.SaveData_Int("ActiveBat", BatIndex);
-                    opButtons[1].interactable = false;
-                    if (!Saved_Anim.GetBool("isSaved"))
-                        Saved_Anim.SetBool("isSaved", true);
+                    SaveItemResult("ActiveBat", BatIndex);
                     break;
 
                 case 2:
-
-                    _MemManage.SaveData_Int("ActiveMat", MatIndex);
-                    opButtons[1].interactable = false;
-                    if (!Saved_Anim.GetBool("isSaved"))
-                        Saved_Anim.SetBool("isSaved", true);
+                    SaveItemResult("ActiveMat", MatIndex);
                     break;
             }
         }
-
-
     }
 
     public void ChangeHat(string op)
@@ -625,4 +595,25 @@ public class CustomManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+
+    //----------------------//
+
+
+    void BuyResult(int Index)
+    {
+        _ItemData[Index].BuyStatus = true;
+        _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[Index].Score);
+        BuyText.text = "BUY";
+        opButtons[0].interactable = false;
+        opButtons[1].interactable = true;
+        ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+    }
+
+    void SaveItemResult(string key, int Index)
+    {
+        _MemManage.SaveData_Int(key, Index);
+        opButtons[1].interactable = false;
+        if (!Saved_Anim.GetBool("isSaved"))
+            Saved_Anim.SetBool("isSaved", true);
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Anil;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,6 @@ public class GameManager : MonoBehaviour
     public List<GameObject> DestroyEffects;
     public List<GameObject> DeathStains;
     public GameObject _Player;
-
-
-
 
     public static int CurrentCharCount;
 
@@ -36,14 +34,19 @@ public class GameManager : MonoBehaviour
     MathOps _MathOps = new MathOps();
     MemoryManagement _MemoryManage = new MemoryManagement();
 
+    Scene _Scene;
 
-    void Awake()
+
+    private void Awake()
     {
         CheckItems();
     }
+
     void Start()
     {
+        //_MemoryManage.SaveData_Int("LastPlayed", 5);
         CreateEnemies();
+        _Scene = SceneManager.GetActiveScene();
     }
 
     public void CreateEnemies()
@@ -80,27 +83,24 @@ public class GameManager : MonoBehaviour
                     Debug.Log("You Lose");
                 else
                 {
-                    if ((CurrentCharCount > 5))
+                    if (CurrentCharCount > 5)
                     {
-                        _MemoryManage.SaveData_Int(
-                            "Score",
-                            _MemoryManage.ReadData_i("Score") + 600
-                        );
-                        _MemoryManage.SaveData_Int(
-                            "LastPlayed",
-                            _MemoryManage.ReadData_i("LastPlayed" + 1)
-                        );
+                        if (_Scene.buildIndex == _MemoryManage.ReadData_i("LastPlayed"))
+                        {
+                            _MemoryManage.SaveData_Int("Score", _MemoryManage.ReadData_i("Score") + 600);
+                            _MemoryManage.SaveData_Int("LastPlayed", _MemoryManage.ReadData_i("LastPlayed") + 1);
+                        }
+
+
                     }
                     else
                     {
-                        _MemoryManage.SaveData_Int(
-                            "Score",
-                            _MemoryManage.ReadData_i("Score") + 200
-                        );
-                        _MemoryManage.SaveData_Int(
-                            "LastPlayed",
-                            _MemoryManage.ReadData_i("LastPlayed" + 1)
-                        );
+                        if (_Scene.buildIndex == _MemoryManage.ReadData_i("LastPlayed"))
+                        {
+                            _MemoryManage.SaveData_Int("Score", _MemoryManage.ReadData_i("Score") + 200);
+                            _MemoryManage.SaveData_Int("LastPlayed", _MemoryManage.ReadData_i("LastPlayed") + 1);
+
+                        }
                         Debug.Log("You Win");
                     }
                 }

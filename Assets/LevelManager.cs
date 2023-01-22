@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         int CurrentLevel = _MemoManage.ReadData_i("LastPlayed") - 4;
+        //Debug.Log(_MemoManage.ReadData_i("LastPlayed"));
 
         int Index = 1;
         for (int i = 0; i < LevelButtons.Length; i++)
@@ -46,22 +47,22 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(Index);
     }
 
-    /* public void LoadTheScene()
-     {
-         Debug.Log(
-             EventSystem.current.currentSelectedGameObject
-                 .GetComponentInChildren<TextMeshProUGUI>()
-                 .text
-         );
-         SceneManager.LoadScene(
-             int.Parse(
-                 EventSystem.current.currentSelectedGameObject
-                     .GetComponentInChildren<TextMeshProUGUI>()
-                     .text
-             ) + 4
-         );
-     }
-     */
+    public void LoadTheScene()
+    {
+        Debug.Log(
+            EventSystem.current.currentSelectedGameObject
+                .GetComponentInChildren<TextMeshProUGUI>()
+                .text
+        );
+        SceneManager.LoadScene(
+            int.Parse(
+                EventSystem.current.currentSelectedGameObject
+                    .GetComponentInChildren<TextMeshProUGUI>()
+                    .text
+            ) + 4
+        );
+    }
+
 
     public void GoBack()
     {

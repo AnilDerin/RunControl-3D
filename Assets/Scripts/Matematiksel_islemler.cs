@@ -337,11 +337,6 @@ namespace Anil
         }
     }
 
-    public class UserData
-    {
-        public static List<ItemData> _ItemData = new List<ItemData>();
-    }
-
     [Serializable]
     public class ItemData
     {
@@ -354,6 +349,9 @@ namespace Anil
 
     public class DataManagement
     {
+
+        List<ItemData> _ItemInnerData;
+
         public void Save(List<ItemData> _ItemData)
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -361,19 +359,6 @@ namespace Anil
             bf.Serialize(file, _ItemData);
             file.Close();
         }
-
-        public void FirstBuildUp(List<ItemData> _ItemData)
-        {
-            if (!File.Exists(Application.persistentDataPath + "/ItemData.gd"))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Create(Application.persistentDataPath + "/ItemData.gd");
-                bf.Serialize(file, _ItemData);
-                file.Close();
-            }
-        }
-
-        List<ItemData> _ItemInnerData;
 
         public void Load()
         {
@@ -392,6 +377,17 @@ namespace Anil
         public List<ItemData> ExportList()
         {
             return _ItemInnerData;
+        }
+
+        public void FirstBuildUp(List<ItemData> _ItemData)
+        {
+            if (!File.Exists(Application.persistentDataPath + "/ItemData.gd"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Create(Application.persistentDataPath + "/ItemData.gd");
+                bf.Serialize(file, _ItemData);
+                file.Close();
+            }
         }
     }
 }
