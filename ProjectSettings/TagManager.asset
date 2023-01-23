@@ -19,6 +19,7 @@ TagManager:
   - Direk
   - EmptyChars
   - LastTriggerForFreeHeroes
+  - BGM
   layers:
   - Default
   - TransparentFX
