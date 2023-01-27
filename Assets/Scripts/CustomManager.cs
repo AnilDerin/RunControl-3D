@@ -65,6 +65,11 @@ public class CustomManager : MonoBehaviour
         CheckStatus(1, true);
         CheckStatus(2, true);
 
+
+        foreach (var item in Sounds)
+        {
+            item.volume = _MemManage.ReadData_f("MenuFx");
+        }
     }
 
     void CheckStatus(int Section, bool operation = false)

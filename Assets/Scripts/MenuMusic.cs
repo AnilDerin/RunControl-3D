@@ -9,7 +9,7 @@ public class MenuMusic : MonoBehaviour
     public AudioSource _Music;
     void Start()
     {
-        // _Music.volume = PlayerPrefs.GetFloat("MenuMusic"); //buraya bakmayı unutma
+        _Music.volume = PlayerPrefs.GetFloat("MenuBGM");
         DontDestroyOnLoad(gameObject);
 
         if (Instance == null)
@@ -20,6 +20,6 @@ public class MenuMusic : MonoBehaviour
 
     void Update()
     {
-
+        _Music.volume = PlayerPrefs.GetFloat("MenuBGM");
     }
 }

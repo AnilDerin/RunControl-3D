@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        ButtonSound.volume = _MemoManage.ReadData_f("MenuFx");
+
         int CurrentLevel = _MemoManage.ReadData_i("LastPlayed") - 4;
         //Debug.Log(_MemoManage.ReadData_i("LastPlayed"));
 

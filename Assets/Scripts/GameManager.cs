@@ -35,10 +35,12 @@ public class GameManager : MonoBehaviour
     MemoryManagement _MemoryManage = new MemoryManagement();
 
     Scene _Scene;
+    public AudioSource BGM;
 
 
     private void Awake()
     {
+        BGM.volume = _MemoryManage.ReadData_f("MenuBGM");
         Destroy(GameObject.FindWithTag("BGM"));
         CheckItems();
     }
@@ -213,4 +215,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /* public void QuitButtonBehavior(string behavior)
+    {
+        ButtonSound.Play();
+        if (behavior == "Yes")
+            Application.Quit();
+        else if (behavior == "Exit")
+            QuitPanel.SetActive(true);
+        else
+            QuitPanel.SetActive(false);
+    }
+*/
 }

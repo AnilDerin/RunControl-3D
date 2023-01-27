@@ -21,8 +21,12 @@ public class MainMenu_Manager : MonoBehaviour
 
         _MemManage.CheckAndDefine();
         _ItemData.FirstBuildUp(_ItemInfo);
-        _MemManage.SaveData_Int("LastPlayed", 5);
+        //_MemManage.SaveData_Int("LastPlayed", 5);
+        ButtonSound.volume = _MemManage.ReadData_f("MenuFx");
+
     }
+
+
 
     public void LoadScene(int Index)
     {
@@ -45,8 +49,6 @@ public class MainMenu_Manager : MonoBehaviour
         else if (behavior == "Exit")
             QuitPanel.SetActive(true);
         else
-        {
             QuitPanel.SetActive(false);
-        }
     }
 }

@@ -333,6 +333,9 @@ namespace Anil
                 PlayerPrefs.SetInt("ActiveHat", -1);
                 PlayerPrefs.SetInt("ActiveBat", -1);
                 PlayerPrefs.SetInt("ActiveMat", -1);
+                PlayerPrefs.SetFloat("MenuMusic", .5f);
+                PlayerPrefs.SetFloat("MenuFX", .5f);
+                PlayerPrefs.SetFloat("GameMusic", .5f);
             }
         }
     }
