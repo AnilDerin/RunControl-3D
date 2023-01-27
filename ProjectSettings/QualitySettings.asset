@@ -245,6 +245,8 @@ QualitySettings:
     - iPhone
     - Android
     - WebGL
+    - Standalone
+    - Server
   m_PerPlatformDefaultQuality:
     Android: 2
     GameCoreScarlett: 5

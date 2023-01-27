@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Anil;
-using System;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -35,12 +33,14 @@ public class GameManager : MonoBehaviour
     MemoryManagement _MemoryManage = new MemoryManagement();
 
     Scene _Scene;
-    public AudioSource BGM;
+    public AudioSource[] Sounds;
+    public GameObject[] opPanels;
 
 
     private void Awake()
     {
-        BGM.volume = _MemoryManage.ReadData_f("MenuBGM");
+        Sounds[0].volume = _MemoryManage.ReadData_f("MenuBGM");
+        Sounds[1].volume = _MemoryManage.ReadData_f("MenuFx");
         Destroy(GameObject.FindWithTag("BGM"));
         CheckItems();
     }
@@ -215,15 +215,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /* public void QuitButtonBehavior(string behavior)
+    public void QuitButtonBehavior(string behavior)
     {
-        ButtonSound.Play();
-        if (behavior == "Yes")
-            Application.Quit();
-        else if (behavior == "Exit")
-            QuitPanel.SetActive(true);
-        else
-            QuitPanel.SetActive(false);
+        Sounds[1].Play();
+        Time.timeScale = 0;
+
+        switch (behavior)
+        {
+            case "Pause":
+                opPanels[0].SetActive(true);
+                Sounds[0].volume = 0;
+                break;
+            case "Resume":
+                Time.timeScale = 1;
+                opPanels[0].SetActive(false);
+                Sounds[0].volume = _MemoryManage.ReadData_f("MenuBGM");
+                break;
+            case "MainMenu":
+                SceneManager.LoadScene(0);
+                Time.timeScale = 1;
+                break;
+            case "Restart":
+                SceneManager.LoadScene(_Scene.buildIndex);
+                Time.timeScale = 1;
+                Sounds[0].volume = _MemoryManage.ReadData_f("MenuBGM");
+                break;
+        }
+
     }
-*/
+
 }
