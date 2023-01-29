@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Anil;
 using UnityEngine.SceneManagement;
 
@@ -13,18 +14,18 @@ public class GameManager : MonoBehaviour
 
     public static int CurrentCharCount;
 
-    [Header("Level Data")]
+    [Header("--------LEVEL DATA")]
     public List<GameObject> Enemies;
     public int enemyCount;
     public bool isGameEnded;
     bool isEndLine;
-    [Header("HATS")]
+    [Header("--------HATS")]
     public GameObject[] Hats;
 
-    [Header("BATS")]
+    [Header("--------BATS")]
     public GameObject[] Bats;
 
-    [Header("MATS")]
+    [Header("--------MATS")]
     public Material[] Mats;
     public SkinnedMeshRenderer _Renderer;
     public Material DefaultMat;
@@ -33,13 +34,17 @@ public class GameManager : MonoBehaviour
     MemoryManagement _MemoryManage = new MemoryManagement();
 
     Scene _Scene;
+
+    [Header("--------GENERAL DATA")]
     public AudioSource[] Sounds;
     public GameObject[] opPanels;
+    public Slider BGM_Volume;
 
 
     private void Awake()
     {
         Sounds[0].volume = _MemoryManage.ReadData_f("MenuBGM");
+        BGM_Volume.value = _MemoryManage.ReadData_f("MenuBGM");
         Sounds[1].volume = _MemoryManage.ReadData_f("MenuFx");
         Destroy(GameObject.FindWithTag("BGM"));
         CheckItems();
@@ -243,5 +248,28 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void Settings(string behavior)
+    {
+        if (behavior == "Open")
+        {
+            opPanels[1].SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            opPanels[1].SetActive(false);
+            Time.timeScale = 1;
+
+        }
+    }
+
+
+    public void AdjustVolume()
+    {
+        _MemoryManage.SaveData_Float("MenuBGM", BGM_Volume.value);
+        Sounds[0].volume = BGM_Volume.value;
+    }
+
 
 }

@@ -393,4 +393,27 @@ namespace Anil
             }
         }
     }
+
+
+
+    //Language
+
+
+    [Serializable]
+    public class LanguageDataMain
+    {
+        public int GroupIndex;
+        public List<LanguageData_TR> _LangData_TR = new List<LanguageData_TR>();
+        public List<LanguageData_TR> _LangData_EN = new List<LanguageData_TR>();
+
+    }
+
+    [Serializable]
+    public class LanguageData_TR
+    {
+        public string Text;
+    }
+
+
+
 }

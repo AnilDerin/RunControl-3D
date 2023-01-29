@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 using Anil;
 
@@ -14,6 +16,9 @@ public class MainMenu_Manager : MonoBehaviour
     public List<ItemData> _ItemInfo = new List<ItemData>();
     public AudioSource ButtonSound;
 
+    public List<LanguageDataMain> _LangDataMain = new List<LanguageDataMain>();
+    public TextMeshProUGUI[] TextObjects;
+
     MathOps _MathOps = new MathOps();
 
     void Start()
@@ -23,7 +28,6 @@ public class MainMenu_Manager : MonoBehaviour
         _ItemData.FirstBuildUp(_ItemInfo);
         //_MemManage.SaveData_Int("LastPlayed", 5);
         ButtonSound.volume = _MemManage.ReadData_f("MenuFx");
-
     }
 
 

@@ -23,47 +23,58 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (!isEnded)
-            transform.Translate(Vector3.forward * .9f * Time.deltaTime);
-
-        if (isEnded)
+        if (Time.timeScale != 0)
         {
-            transform.position = Vector3.Lerp(
-                transform.position,
-                FinalPos.transform.position,
-                .02f
-            );
-            if (_slider.value != 0)
-                _slider.value -= .01f;
-        }
-        else
-        {
-            float Diff = Vector3.Distance(transform.position, TargetDestination.transform.position);
-            _slider.value = Diff;
+            if (!isEnded)
+                transform.Translate(Vector3.forward * .9f * Time.deltaTime);
 
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (isEnded)
             {
-                if (Input.GetAxis("Mouse X") < 0)
+                transform.position = Vector3.Lerp(
+                    transform.position,
+                    FinalPos.transform.position,
+                    .02f
+                );
+                if (_slider.value != 0)
+                    _slider.value -= .01f;
+            }
+            else
+            {
+                float Diff = Vector3.Distance(transform.position, TargetDestination.transform.position);
+                _slider.value = Diff;
+
+
+
+
+                if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    transform.position = Vector3.Lerp(
-                        transform.position,
-                        new Vector3(
-                            Mathf.Clamp(transform.position.x, -1.1f, 1.1f) - .1f,
-                            transform.position.y,
-                            transform.position.z
-                        ),
-                        .4f
-                    );
+                    if (Input.GetAxis("Mouse X") < 0)
+                    {
+                        transform.position = Vector3.Lerp(
+                            transform.position,
+                            new Vector3(
+                                Mathf.Clamp(transform.position.x, -1.1f, 1.1f) - .1f,
+                                transform.position.y,
+                                transform.position.z
+                            ),
+                            .4f
+                        );
+                    }
+
+                    if (Input.GetAxis("Mouse X") > 0)
+                    {
+                        transform.position = Vector3.Lerp(
+                            transform.position,
+                            new Vector3(Mathf.Clamp(transform.position.x, -1.1f, 1.1f) + .1f, transform.position.y, transform.position.z), .4f);
+                    }
                 }
 
-                if (Input.GetAxis("Mouse X") > 0)
-                {
-                    transform.position = Vector3.Lerp(
-                        transform.position,
-                        new Vector3(Mathf.Clamp(transform.position.x, -1.1f, 1.1f) + .1f, transform.position.y, transform.position.z), .4f);
-                }
             }
+
         }
+
+
+
     }
 
     void OnTriggerEnter(Collider other)

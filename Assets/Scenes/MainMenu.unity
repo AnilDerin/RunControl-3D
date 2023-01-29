@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 246186858}
   - component: {fileID: 246186857}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Settings Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -969,7 +969,7 @@ GameObject:
   - component: {fileID: 485476924}
   - component: {fileID: 485476923}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ' Play Text (TMP)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 509555076}
   - component: {fileID: 509555075}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Customize Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1239,7 +1239,7 @@ GameObject:
   - component: {fileID: 545020261}
   - component: {fileID: 545020260}
   m_Layer: 5
-  m_Name: QuitButtonText
+  m_Name: QuitButton Yes Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1442,7 +1442,7 @@ GameObject:
   - component: {fileID: 700182103}
   - component: {fileID: 700182102}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Quit Warning Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1711,7 +1711,7 @@ GameObject:
   - component: {fileID: 806026701}
   - component: {fileID: 806026700}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Quit Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1922,6 +1922,38 @@ MonoBehaviour:
     Score: 300
     BuyStatus: 0
   ButtonSound: {fileID: 962926768}
+  _LangDataMain:
+  - GroupIndex: 0
+    _LangData_TR:
+    - Text: OYNA
+    - Text: "\xD6ZELLE\u015ET\u0130R"
+    - Text: "B\xD6L\xDCM SE\xC7"
+    - Text: MARKET
+    - Text: AYARLAR
+    - Text: "\xC7IKI\u015E"
+    - Text: "EM\u0130N M\u0130S\u0130N\u0130Z?"
+    - Text: EVET
+    - Text: HAYIR
+    _LangData_EN:
+    - Text: PLAY
+    - Text: CUSTOMIZE
+    - Text: CHOOSE LEVEL
+    - Text: STORE
+    - Text: SETTINGS
+    - Text: EXIT
+    - Text: ARE YOU SURE?
+    - Text: YES
+    - Text: NO
+  TextObjects:
+  - {fileID: 485476923}
+  - {fileID: 509555075}
+  - {fileID: 1676685512}
+  - {fileID: 2099329388}
+  - {fileID: 246186857}
+  - {fileID: 806026700}
+  - {fileID: 700182102}
+  - {fileID: 545020260}
+  - {fileID: 1830648225}
 --- !u!4 &962926767
 Transform:
   m_ObjectHideFlags: 0
@@ -2514,7 +2546,7 @@ GameObject:
   - component: {fileID: 1676685513}
   - component: {fileID: 1676685512}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Level Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2783,7 +2815,7 @@ GameObject:
   - component: {fileID: 1830648226}
   - component: {fileID: 1830648225}
   m_Layer: 5
-  m_Name: QuitButtonText
+  m_Name: QuitButton No Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3359,7 +3391,7 @@ GameObject:
   - component: {fileID: 2099329389}
   - component: {fileID: 2099329388}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Store Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
