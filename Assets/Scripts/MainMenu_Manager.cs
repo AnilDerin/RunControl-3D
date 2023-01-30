@@ -13,23 +13,54 @@ public class MainMenu_Manager : MonoBehaviour
 
 
     public GameObject QuitPanel;
-    public List<ItemData> _ItemInfo = new List<ItemData>();
-    public AudioSource ButtonSound;
+    public List<ItemData> _Default_ItemInfo = new List<ItemData>();
+    public List<LanguageDataMain> _Default_Lang = new List<LanguageDataMain>();
+
 
     public List<LanguageDataMain> _LangDataMain = new List<LanguageDataMain>();
+    List<LanguageDataMain> _LangReadData = new List<LanguageDataMain>();
+
     public TextMeshProUGUI[] TextObjects;
+    public AudioSource ButtonSound;
 
     MathOps _MathOps = new MathOps();
+
+
 
     void Start()
     {
 
         _MemManage.CheckAndDefine();
-        _ItemData.FirstBuildUp(_ItemInfo);
-        //_MemManage.SaveData_Int("LastPlayed", 5);
+        _ItemData.FirstBuildUp(_Default_ItemInfo, _Default_Lang);
         ButtonSound.volume = _MemManage.ReadData_f("MenuFx");
+
+        _MemManage.SaveData_String("Language", "EN");
+        // _MemManage.SaveData_String("Language", "TR");
+
+        _ItemData.LoadLang();
+        _LangReadData = _ItemData.ExportLangList();
+        _LangDataMain.Add(_LangReadData[0]);
+        LanguageDetect();
     }
 
+
+    public void LanguageDetect()
+    {
+        if (_MemManage.ReadData_s("Language") == "TR")
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_TR[i].Text;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_EN[i].Text;
+            }
+        }
+    }
 
 
     public void LoadScene(int Index)

@@ -1865,7 +1865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QuitPanel: {fileID: 1008099635}
-  _ItemInfo:
+  _Default_ItemInfo:
   - GroupIndex: 1
     Item_Index: 0
     Item_Name: Hat 1
@@ -1921,10 +1921,8 @@ MonoBehaviour:
     Item_Name: Theme 5
     Score: 300
     BuyStatus: 0
-  ButtonSound: {fileID: 962926768}
-  _LangDataMain:
-  - GroupIndex: 0
-    _LangData_TR:
+  _Default_Lang:
+  - _LangData_TR:
     - Text: OYNA
     - Text: "\xD6ZELLE\u015ET\u0130R"
     - Text: "B\xD6L\xDCM SE\xC7"
@@ -1944,6 +1942,57 @@ MonoBehaviour:
     - Text: ARE YOU SURE?
     - Text: YES
     - Text: NO
+  - _LangData_TR:
+    - Text: "\u015EAPKA"
+    - Text: SOPA
+    - Text: TEMA
+    - Text: "GER\u0130 D\xD6N"
+    - Text: "E\u015EYA SE\xC7\u0130LMED\u0130"
+    - Text: SATIN AL
+    - Text: KAYDET
+    - Text: "KAYDED\u0130LD\u0130!"
+    _LangData_EN:
+    - Text: HAT
+    - Text: BAT
+    - Text: COLOR
+    - Text: RETURN
+    - Text: NO ITEM
+    - Text: BUY
+    - Text: SAVE
+    - Text: SUCCESSFULLY SAVED!
+  - _LangData_TR:
+    - Text: "LEVEL SE\xC7"
+    _LangData_EN:
+    - Text: CHOOSE LEVEL
+  - _LangData_TR:
+    - Text: MARKET
+    _LangData_EN:
+    - Text: STORE
+  - _LangData_TR:
+    - Text: AYARLAR
+    - Text: "MEN\xDC M\xDCZ\u0130\u011E\u0130 SES"
+    - Text: MENU EFEKT SES
+    - Text: "OYUN SES\u0130"
+    - Text: "D\u0130L"
+    _LangData_EN:
+    - Text: SETTINGS
+    - Text: BACKGROUND MUSIC
+    - Text: MENU FX
+    - Text: GAME MUSIC
+    - Text: LANGUAGE
+  - _LangData_TR:
+    - Text: AYARLAR
+    - Text: "OYUN SES\u0130"
+    - Text: OYUN DURAKLATILDI
+    - Text: KAZANDIN!
+    - Text: "KAYBETT\u0130N!"
+    _LangData_EN:
+    - Text: SETTINGS
+    - Text: GAME MUSIC
+    - Text: GAME PAUSED
+    - Text: YOU WIN!
+    - Text: YOU LOSE!
+  _LangDataMain: []
   TextObjects:
   - {fileID: 485476923}
   - {fileID: 509555075}
@@ -1954,6 +2003,7 @@ MonoBehaviour:
   - {fileID: 700182102}
   - {fileID: 545020260}
   - {fileID: 1830648225}
+  ButtonSound: {fileID: 962926768}
 --- !u!4 &962926767
 Transform:
   m_ObjectHideFlags: 0
@@ -2592,7 +2642,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "LEVEL SE\xC7\n"
+  m_text: "B\xD6L\xDCM SE\xC7\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

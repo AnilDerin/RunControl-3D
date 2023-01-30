@@ -336,6 +336,7 @@ namespace Anil
                 PlayerPrefs.SetFloat("MenuMusic", .5f);
                 PlayerPrefs.SetFloat("MenuFX", .5f);
                 PlayerPrefs.SetFloat("GameMusic", .5f);
+                PlayerPrefs.SetString("Language", "TR");
             }
         }
     }
@@ -382,7 +383,7 @@ namespace Anil
             return _ItemInnerData;
         }
 
-        public void FirstBuildUp(List<ItemData> _ItemData)
+        public void FirstBuildUp(List<ItemData> _ItemData, List<LanguageDataMain> _LangData)
         {
             if (!File.Exists(Application.persistentDataPath + "/ItemData.gd"))
             {
@@ -391,7 +392,37 @@ namespace Anil
                 bf.Serialize(file, _ItemData);
                 file.Close();
             }
+            if (!File.Exists(Application.persistentDataPath + "/LangData.gd"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Create(Application.persistentDataPath + "/LangData.gd");
+                bf.Serialize(file, _LangData);
+                file.Close();
+            }
         }
+
+        List<LanguageDataMain> _LangDataInnerList;
+
+
+        public void LoadLang()
+        {
+            if (File.Exists(Application.persistentDataPath + "/LangData.gd"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(
+                    Application.persistentDataPath + "/LangData.gd",
+                    FileMode.Open
+                );
+                _LangDataInnerList = (List<LanguageDataMain>)bf.Deserialize(file);
+                file.Close();
+            }
+        }
+
+        public List<LanguageDataMain> ExportLangList()
+        {
+            return _LangDataInnerList;
+        }
+
     }
 
 
@@ -402,14 +433,14 @@ namespace Anil
     [Serializable]
     public class LanguageDataMain
     {
-        public int GroupIndex;
-        public List<LanguageData_TR> _LangData_TR = new List<LanguageData_TR>();
-        public List<LanguageData_TR> _LangData_EN = new List<LanguageData_TR>();
+
+        public List<LanguageData> _LangData_TR = new List<LanguageData>();
+        public List<LanguageData> _LangData_EN = new List<LanguageData>();
 
     }
 
     [Serializable]
-    public class LanguageData_TR
+    public class LanguageData
     {
         public string Text;
     }
