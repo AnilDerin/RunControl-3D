@@ -290,7 +290,7 @@ RectTransform:
   m_Children:
   - {fileID: 446883005}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -427,6 +427,17 @@ MonoBehaviour:
   MenuBGM: {fileID: 1738752556}
   MenuFx: {fileID: 1431863768}
   GameBGM: {fileID: 457966784}
+  _LangDataMain: []
+  TextObjects:
+  - {fileID: 943612581}
+  - {fileID: 658467006}
+  - {fileID: 1171866464}
+  - {fileID: 133054503}
+  - {fileID: 145128194}
+  LangTextObj: {fileID: 641927066}
+  LangTextButtons:
+  - {fileID: 1096291226}
+  - {fileID: 1273699092}
 --- !u!4 &103767884
 Transform:
   m_ObjectHideFlags: 0
@@ -440,7 +451,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133054501
 GameObject:
@@ -454,7 +465,7 @@ GameObject:
   - component: {fileID: 133054504}
   - component: {fileID: 133054503}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SFX Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,7 +637,7 @@ GameObject:
   - component: {fileID: 145128195}
   - component: {fileID: 145128194}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LANG Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1483,7 +1494,7 @@ GameObject:
   - component: {fileID: 641927067}
   - component: {fileID: 641927066}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Lang Name Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1618,7 +1629,7 @@ GameObject:
   - component: {fileID: 658467007}
   - component: {fileID: 658467006}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: BGM Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1807,7 +1818,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &699834635
 GameObject:
@@ -1972,7 +1983,7 @@ GameObject:
   - component: {fileID: 866962747}
   - component: {fileID: 866962748}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ' Back Button Text (TMP)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2245,7 +2256,7 @@ GameObject:
   - component: {fileID: 943612582}
   - component: {fileID: 943612581}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ' Head Text (TMP)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2450,7 +2461,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1096291224
 GameObject:
@@ -2465,7 +2476,7 @@ GameObject:
   - component: {fileID: 1096291227}
   - component: {fileID: 1096291226}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2538,13 +2549,13 @@ MonoBehaviour:
       - m_Target: {fileID: 103767883}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: ChangeLanguage
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: back
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1096291227
@@ -2673,7 +2684,7 @@ GameObject:
   - component: {fileID: 1171866465}
   - component: {fileID: 1171866464}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: M_SFX Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2919,7 +2930,7 @@ GameObject:
   - component: {fileID: 1273699093}
   - component: {fileID: 1273699092}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Next Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2992,13 +3003,13 @@ MonoBehaviour:
       - m_Target: {fileID: 103767883}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: ChangeLanguage
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: forward
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1273699093
@@ -3855,7 +3866,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1930324141
 GameObject:

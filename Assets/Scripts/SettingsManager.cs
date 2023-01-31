@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 using Anil;
+using System;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -15,6 +17,18 @@ public class SettingsManager : MonoBehaviour
     public Slider GameBGM;
 
     MemoryManagement _MemManage = new MemoryManagement();
+    DataManagement _ItemData = new DataManagement();
+
+    public List<LanguageDataMain> _LangDataMain = new List<LanguageDataMain>();
+    List<LanguageDataMain> _LangReadData = new List<LanguageDataMain>();
+
+
+    public TextMeshProUGUI[] TextObjects;
+
+    [Header("---------LANG PREF OBJ---------")]
+    public TextMeshProUGUI LangTextObj;
+    public Button[] LangTextButtons;
+    int ActiveLangIndex;
 
 
 
@@ -26,19 +40,15 @@ public class SettingsManager : MonoBehaviour
         MenuBGM.value = _MemManage.ReadData_f("MenuBGM");
         MenuFx.value = _MemManage.ReadData_f("MenuFx");
         GameBGM.value = _MemManage.ReadData_f("GameBGM");
+
+
+        _ItemData.LoadLang();
+        _LangReadData = _ItemData.ExportLangList();
+        _LangDataMain.Add(_LangReadData[4]);
+        LanguageDetect();
+        CheckLangStatus();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void GoBack()
-    {
-        ButtonSound.Play();
-        SceneManager.LoadScene(0);
-    }
 
     public void AdjustVolume(string Selection)
     {
@@ -60,10 +70,77 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    public void ChangeLanguage()
+    public void GoBack(string Lang)
     {
+        ButtonSound.Play();
+        SceneManager.LoadScene(0);
+
+    }
+
+    private void LanguageDetect()
+    {
+        if (_MemManage.ReadData_s("Language") == "TR")
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_TR[i].Text;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_EN[i].Text;
+            }
+        }
+    }
+    void CheckLangStatus()
+    {
+        if (_MemManage.ReadData_s("Language") == "EN")
+        {
+            ActiveLangIndex = 0;
+            LangTextObj.text = "ENGLISH";
+            LangTextButtons[0].interactable = false;
+        }
+        else
+        {
+            ActiveLangIndex = 1;
+            LangTextObj.text = "TÜRKÇE";
+            LangTextButtons[1].interactable = false;
+        }
+    }
+    public void ChangeLanguage(string Direction)
+    {
+
+        if (Direction == "forward")
+        {
+            ActiveLangIndex = 1;
+            LangTextObj.text = "TÜRKÇE";
+            LangTextButtons[1].interactable = false;
+            LangTextButtons[0].interactable = true;
+            _MemManage.SaveData_String("Language", "TR");
+            LanguageDetect();
+
+        }
+
+        else
+        {
+            ActiveLangIndex = 0;
+
+            LangTextObj.text = "ENGLISH";
+            LangTextButtons[0].interactable = false;
+            LangTextButtons[1].interactable = true;
+            _MemManage.SaveData_String("Language", "EN");
+            LanguageDetect();
+
+
+
+        }
+
+
+
         ButtonSound.Play();
 
     }
-    
+
 }

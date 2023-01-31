@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 using Anil;
+using System;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,13 +15,25 @@ public class LevelManager : MonoBehaviour
     public Sprite LockedButtonImage;
     public AudioSource ButtonSound;
 
-    MemoryManagement _MemoManage = new MemoryManagement();
+    MemoryManagement _MemManage = new MemoryManagement();
+    DataManagement _ItemData = new DataManagement();
+
+    public List<LanguageDataMain> _LangDataMain = new List<LanguageDataMain>();
+    List<LanguageDataMain> _LangReadData = new List<LanguageDataMain>();
+    public TextMeshProUGUI TextObjects;
+
 
     void Start()
     {
-        ButtonSound.volume = _MemoManage.ReadData_f("MenuFx");
+        _ItemData.LoadLang();
+        _LangReadData = _ItemData.ExportLangList();
+        _LangDataMain.Add(_LangReadData[2]);
+        LanguageDetect();
 
-        int CurrentLevel = _MemoManage.ReadData_i("LastPlayed") - 4;
+
+        ButtonSound.volume = _MemManage.ReadData_f("MenuFx");
+
+        int CurrentLevel = _MemManage.ReadData_i("LastPlayed") - 4;
         //Debug.Log(_MemoManage.ReadData_i("LastPlayed"));
 
         int Index = 1;
@@ -43,6 +56,17 @@ public class LevelManager : MonoBehaviour
             }
             Index++;
         }
+
+
+    }
+
+    public void LanguageDetect()
+    {
+        if (_MemManage.ReadData_s("Language") == "TR")
+            TextObjects.text = _LangDataMain[0]._LangData_TR[0].Text;
+
+        else
+            TextObjects.text = _LangDataMain[0]._LangData_EN[0].Text;
     }
 
     public void LoadTheScene(int Index)
