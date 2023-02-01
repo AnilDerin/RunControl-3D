@@ -41,14 +41,12 @@ public class SettingsManager : MonoBehaviour
         MenuFx.value = _MemManage.ReadData_f("MenuFx");
         GameBGM.value = _MemManage.ReadData_f("GameBGM");
 
-
         _ItemData.LoadLang();
         _LangReadData = _ItemData.ExportLangList();
         _LangDataMain.Add(_LangReadData[4]);
         LanguageDetect();
         CheckLangStatus();
     }
-
 
     public void AdjustVolume(string Selection)
     {
@@ -74,7 +72,6 @@ public class SettingsManager : MonoBehaviour
     {
         ButtonSound.Play();
         SceneManager.LoadScene(0);
-
     }
 
     private void LanguageDetect()
@@ -116,11 +113,10 @@ public class SettingsManager : MonoBehaviour
         {
             ActiveLangIndex = 1;
             LangTextObj.text = "TÜRKÇE";
-            LangTextButtons[1].interactable = false;
             LangTextButtons[0].interactable = true;
+            LangTextButtons[1].interactable = false;
             _MemManage.SaveData_String("Language", "TR");
             LanguageDetect();
-
         }
 
         else
@@ -132,9 +128,6 @@ public class SettingsManager : MonoBehaviour
             LangTextButtons[1].interactable = true;
             _MemManage.SaveData_String("Language", "EN");
             LanguageDetect();
-
-
-
         }
 
 
