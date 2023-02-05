@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Anil;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     MathOps _MathOps = new MathOps();
     MemoryManagement _MemoryManage = new MemoryManagement();
+    DataManagement _ItemData = new DataManagement();
 
     Scene _Scene;
 
@@ -39,6 +42,13 @@ public class GameManager : MonoBehaviour
     public AudioSource[] Sounds;
     public GameObject[] opPanels;
     public Slider BGM_Volume;
+
+
+
+    public List<LanguageDataMain> _LangDataMain = new List<LanguageDataMain>();
+    List<LanguageDataMain> _LangReadData = new List<LanguageDataMain>();
+
+    public TextMeshProUGUI[] TextObjects;
 
 
     private void Awake()
@@ -55,6 +65,28 @@ public class GameManager : MonoBehaviour
         _MemoryManage.SaveData_Int("LastPlayed", 5);
         CreateEnemies();
         _Scene = SceneManager.GetActiveScene();
+        _ItemData.LoadLang();
+        _LangReadData = _ItemData.ExportLangList();
+        _LangDataMain.Add(_LangReadData[5]);
+        LanguageDetect();
+    }
+
+    private void LanguageDetect()
+    {
+        if (_MemoryManage.ReadData_s("Language") == "TR")
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_TR[i].Text;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_EN[i].Text;
+            }
+        }
     }
 
     public void CreateEnemies()
@@ -88,34 +120,28 @@ public class GameManager : MonoBehaviour
 
                 if (CurrentCharCount < enemyCount || CurrentCharCount == enemyCount)
 
-                    Debug.Log("You Lose");
+                    opPanels[3].SetActive(true);
                 else
                 {
-                    Debug.Log("You Win");
                     if (CurrentCharCount > 5)
                     {
-                        /* if (_Scene.buildIndex == _MemoryManage.ReadData_i("LastPlayed"))
-                         {
-                             _MemoryManage.SaveData_Int("Score", _MemoryManage.ReadData_i("Score") + 600);
-                             _MemoryManage.SaveData_Int("LastPlayed", _MemoryManage.ReadData_i("LastPlayed") + 1);
-                         }
-                        */
-
+                        if (_Scene.buildIndex == _MemoryManage.ReadData_i("LastPlayed"))
+                        {
+                            _MemoryManage.SaveData_Int("Score", _MemoryManage.ReadData_i("Score") + 600);
+                            _MemoryManage.SaveData_Int("LastPlayed", _MemoryManage.ReadData_i("LastPlayed") + 1);
+                        }
 
                     }
                     else
                     {
-                        Debug.Log("You Win");
-                        /*
                         if (_Scene.buildIndex == _MemoryManage.ReadData_i("LastPlayed"))
                         {
                             _MemoryManage.SaveData_Int("Score", _MemoryManage.ReadData_i("Score") + 200);
                             _MemoryManage.SaveData_Int("LastPlayed", _MemoryManage.ReadData_i("LastPlayed") + 1);
 
                         }
-                        */
-
                     }
+                    opPanels[2].SetActive(true);
                 }
             }
         }
@@ -271,5 +297,9 @@ public class GameManager : MonoBehaviour
         Sounds[0].volume = BGM_Volume.value;
     }
 
+    public void GoNextLevel()
+    {
+        SceneManager.LoadScene(_Scene.buildIndex + 1);
+    }
 
 }
