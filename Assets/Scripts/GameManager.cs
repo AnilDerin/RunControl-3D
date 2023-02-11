@@ -5,6 +5,7 @@ using TMPro;
 using Anil;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,12 +44,16 @@ public class GameManager : MonoBehaviour
     public GameObject[] opPanels;
     public Slider BGM_Volume;
 
-
+    [Header("--------LOADING VARIABLES")]
+    public GameObject LoadingScreen;
+    public Slider LoadingSlider;
 
     public List<LanguageDataMain> _LangDataMain = new List<LanguageDataMain>();
     List<LanguageDataMain> _LangReadData = new List<LanguageDataMain>();
 
     public TextMeshProUGUI[] TextObjects;
+
+
 
 
     private void Awake()
@@ -58,6 +63,7 @@ public class GameManager : MonoBehaviour
         Sounds[1].volume = _MemoryManage.ReadData_f("MenuFx");
         Destroy(GameObject.FindWithTag("BGM"));
         CheckItems();
+
     }
 
     void Start()
@@ -299,7 +305,22 @@ public class GameManager : MonoBehaviour
 
     public void GoNextLevel()
     {
-        SceneManager.LoadScene(_Scene.buildIndex + 1);
+        StartCoroutine(LoadAsync(_Scene.buildIndex + 1));
+    }
+
+    IEnumerator LoadAsync(int SceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneIndex);
+
+        LoadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            LoadingSlider.value = progress;
+            yield return null;
+        }
+
     }
 
 }

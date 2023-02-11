@@ -20,7 +20,10 @@ public class LevelManager : MonoBehaviour
 
     public List<LanguageDataMain> _LangDataMain = new List<LanguageDataMain>();
     List<LanguageDataMain> _LangReadData = new List<LanguageDataMain>();
-    public TextMeshProUGUI TextObjects;
+    public TextMeshProUGUI[] TextObjects;
+
+    public GameObject LoadingScreen;
+    public Slider LoadingSlider;
 
 
     void Start()
@@ -63,24 +66,44 @@ public class LevelManager : MonoBehaviour
     public void LanguageDetect()
     {
         if (_MemManage.ReadData_s("Language") == "TR")
-            TextObjects.text = _LangDataMain[0]._LangData_TR[0].Text;
-
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_TR[i].Text;
+            }
+        }
         else
-            TextObjects.text = _LangDataMain[0]._LangData_EN[0].Text;
+        {
+            for (int i = 0; i < TextObjects.Length; i++)
+            {
+                TextObjects[i].text = _LangDataMain[0]._LangData_EN[i].Text;
+            }
+        }
     }
 
     public void LoadTheScene(int Index)
     {
         ButtonSound.Play();
-        SceneManager.LoadScene(Index);
+        StartCoroutine(LoadAsync(Index));
     }
 
-    /* public void LoadTheScene()
-     {
-         Debug.Log(EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text);
-         SceneManager.LoadScene(int.Parse(EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text) + 4);
-     }
-     */
+
+
+    IEnumerator LoadAsync(int SceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneIndex);
+
+        LoadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            LoadingSlider.value = progress;
+            yield return null;
+        }
+
+
+    }
 
 
     public void GoBack()

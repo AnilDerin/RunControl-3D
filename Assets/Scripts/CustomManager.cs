@@ -112,6 +112,8 @@ public class CustomManager : MonoBehaviour
 
     void CheckStatus(int Section, bool operation = false)
     {
+
+
         if (Section == 0)
         {
             if (_MemManage.ReadData_i("ActiveHat") == -1)

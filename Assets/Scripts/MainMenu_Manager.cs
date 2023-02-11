@@ -22,6 +22,8 @@ public class MainMenu_Manager : MonoBehaviour
 
     public TextMeshProUGUI[] TextObjects;
     public AudioSource ButtonSound;
+    public GameObject LoadingScreen;
+    public Slider LoadingSlider;
 
     MathOps _MathOps = new MathOps();
 
@@ -34,8 +36,7 @@ public class MainMenu_Manager : MonoBehaviour
         _ItemData.FirstBuildUp(_Default_ItemInfo, _Default_Lang);
         ButtonSound.volume = _MemManage.ReadData_f("MenuFx");
 
-        _MemManage.SaveData_String("Language", "EN");
-        // _MemManage.SaveData_String("Language", "TR");
+        //_MemManage.SaveData_String("Language", "EN");
 
         _ItemData.LoadLang();
         _LangReadData = _ItemData.ExportLangList();
@@ -72,7 +73,24 @@ public class MainMenu_Manager : MonoBehaviour
     public void Play()
     {
         ButtonSound.Play();
-        SceneManager.LoadScene(_MemManage.ReadData_i("LastPlayed"));
+
+        StartCoroutine(LoadAsync(_MemManage.ReadData_i("LastPlayed")));
+    }
+
+    IEnumerator LoadAsync(int SceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneIndex);
+
+        LoadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            LoadingSlider.value = progress;
+            yield return null;
+        }
+
+
     }
 
     public void QuitButtonBehavior(string behavior)

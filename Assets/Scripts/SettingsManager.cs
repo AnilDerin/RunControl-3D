@@ -91,6 +91,7 @@ public class SettingsManager : MonoBehaviour
             }
         }
     }
+
     void CheckLangStatus()
     {
         if (_MemManage.ReadData_s("Language") == "EN")
@@ -134,6 +135,12 @@ public class SettingsManager : MonoBehaviour
 
         ButtonSound.Play();
 
+    }
+
+    public void GoBack()
+    {
+        ButtonSound.Play();
+        SceneManager.LoadScene(0);
     }
 
 }
