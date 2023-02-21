@@ -43,22 +43,11 @@ public class Player : MonoBehaviour
                 float Diff = Vector3.Distance(transform.position, TargetDestination.transform.position);
                 _slider.value = Diff;
 
-
-
-
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
                     if (Input.GetAxis("Mouse X") < 0)
                     {
-                        transform.position = Vector3.Lerp(
-                            transform.position,
-                            new Vector3(
-                                Mathf.Clamp(transform.position.x, -1.1f, 1.1f) - .1f,
-                                transform.position.y,
-                                transform.position.z
-                            ),
-                            .4f
-                        );
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(Mathf.Clamp(transform.position.x, -1.1f, 1.1f) - .1f, transform.position.y, transform.position.z), .4f);
                     }
 
                     if (Input.GetAxis("Mouse X") > 0)
@@ -68,13 +57,8 @@ public class Player : MonoBehaviour
                             new Vector3(Mathf.Clamp(transform.position.x, -1.1f, 1.1f) + .1f, transform.position.y, transform.position.z), .4f);
                     }
                 }
-
             }
-
         }
-
-
-
     }
 
     void OnTriggerEnter(Collider other)
