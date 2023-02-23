@@ -1441,7 +1441,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1175519220}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1945451704}
+        m_TargetAssemblyTypeName: MarketManager, Assembly-CSharp
+        m_MethodName: BuyProduct_500
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1175519220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1564,7 +1576,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1210502989}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1945451704}
+        m_TargetAssemblyTypeName: MarketManager, Assembly-CSharp
+        m_MethodName: BuyProduct_250
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1210502989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1899,7 +1923,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1483558457}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1945451704}
+        m_TargetAssemblyTypeName: MarketManager, Assembly-CSharp
+        m_MethodName: BuyProduct_2500
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1483558457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,7 +2058,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1485473868}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1945451704}
+        m_TargetAssemblyTypeName: MarketManager, Assembly-CSharp
+        m_MethodName: BuyProduct_1000
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1485473868
 MonoBehaviour:
   m_ObjectHideFlags: 0

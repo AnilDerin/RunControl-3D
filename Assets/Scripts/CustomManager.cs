@@ -62,7 +62,7 @@ public class CustomManager : MonoBehaviour
 
     void Start()
     {
-        ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+        ScoreText.text = _MemManage.ReadData_i("Puan").ToString();
         //_MemManage.SaveData_String("Language", "EN");
 
 
@@ -287,7 +287,7 @@ public class CustomManager : MonoBehaviour
                     TextObjects[5].text = BuyText + " - " + _ItemData[HatIndex].Score;
                     opButtons[1].interactable = false;
 
-                    if (_MemManage.ReadData_i("Score") < _ItemData[HatIndex].Score)
+                    if (_MemManage.ReadData_i("Puan") < _ItemData[HatIndex].Score)
                         opButtons[0].interactable = false;
                     else
                         opButtons[0].interactable = true;
@@ -312,7 +312,7 @@ public class CustomManager : MonoBehaviour
                 {
                     TextObjects[5].text = BuyText + " - " + _ItemData[HatIndex].Score;
                     opButtons[1].interactable = false;
-                    if (_MemManage.ReadData_i("Score") < _ItemData[HatIndex].Score)
+                    if (_MemManage.ReadData_i("Puan") < _ItemData[HatIndex].Score)
                         opButtons[0].interactable = false;
                     else
                         opButtons[0].interactable = true;
@@ -349,7 +349,7 @@ public class CustomManager : MonoBehaviour
                     {
                         TextObjects[5].text = BuyText + " - " + _ItemData[HatIndex].Score;
                         opButtons[1].interactable = false;
-                        if (_MemManage.ReadData_i("Score") < _ItemData[HatIndex].Score)
+                        if (_MemManage.ReadData_i("Puan") < _ItemData[HatIndex].Score)
                             opButtons[0].interactable = false;
                         else
                             opButtons[0].interactable = true;
@@ -396,7 +396,7 @@ public class CustomManager : MonoBehaviour
                 {
                     TextObjects[5].text = BuyText + " - " + _ItemData[BatIndex + 3].Score;
                     opButtons[1].interactable = false;
-                    if (_MemManage.ReadData_i("Score") < _ItemData[BatIndex + 3].Score)
+                    if (_MemManage.ReadData_i("Puan") < _ItemData[BatIndex + 3].Score)
                         opButtons[0].interactable = false;
                     else
                         opButtons[0].interactable = true;
@@ -419,7 +419,7 @@ public class CustomManager : MonoBehaviour
                 {
                     TextObjects[5].text = BuyText + " - " + _ItemData[BatIndex + 3].Score;
                     opButtons[1].interactable = false;
-                    if (_MemManage.ReadData_i("Score") < _ItemData[BatIndex + 3].Score)
+                    if (_MemManage.ReadData_i("Puan") < _ItemData[BatIndex + 3].Score)
                         opButtons[0].interactable = false;
                     else
                         opButtons[0].interactable = true;
@@ -456,7 +456,7 @@ public class CustomManager : MonoBehaviour
                     {
                         TextObjects[5].text = BuyText + " - " + _ItemData[BatIndex + 3].Score;
                         opButtons[1].interactable = false;
-                        if (_MemManage.ReadData_i("Score") < _ItemData[BatIndex + 3].Score)
+                        if (_MemManage.ReadData_i("Puan") < _ItemData[BatIndex + 3].Score)
                             opButtons[0].interactable = false;
                         else
                             opButtons[0].interactable = true;
@@ -510,7 +510,7 @@ public class CustomManager : MonoBehaviour
                     TextObjects[5].text = BuyText + " - " + _ItemData[MatIndex + 6].Score;
                     opButtons[1].interactable = false;
 
-                    if (_MemManage.ReadData_i("Score") < _ItemData[MatIndex + 6].Score)
+                    if (_MemManage.ReadData_i("Puan") < _ItemData[MatIndex + 6].Score)
                         opButtons[0].interactable = false;
                     else
                         opButtons[0].interactable = true;
@@ -535,7 +535,7 @@ public class CustomManager : MonoBehaviour
                 {
                     TextObjects[5].text = BuyText + " - " + _ItemData[MatIndex + 6].Score;
                     opButtons[1].interactable = false;
-                    if (_MemManage.ReadData_i("Score") < _ItemData[MatIndex + 6].Score)
+                    if (_MemManage.ReadData_i("Puan") < _ItemData[MatIndex + 6].Score)
                         opButtons[0].interactable = false;
                     else
                         opButtons[0].interactable = true;
@@ -574,7 +574,7 @@ public class CustomManager : MonoBehaviour
                     {
                         TextObjects[5].text = BuyText + " - " + _ItemData[MatIndex + 6].Score;
                         opButtons[1].interactable = false;
-                        if (_MemManage.ReadData_i("Score") < _ItemData[MatIndex + 6].Score)
+                        if (_MemManage.ReadData_i("Puan") < _ItemData[MatIndex + 6].Score)
                             opButtons[0].interactable = false;
                         else
                             opButtons[0].interactable = true;
@@ -656,11 +656,11 @@ public class CustomManager : MonoBehaviour
     void BuyResult(int Index)
     {
         _ItemData[Index].BuyStatus = true;
-        _MemManage.SaveData_Int("Score", _MemManage.ReadData_i("Score") - _ItemData[Index].Score);
+        _MemManage.SaveData_Int("Puan", _MemManage.ReadData_i("Puan") - _ItemData[Index].Score);
         TextObjects[5].text = BuyText;
         opButtons[0].interactable = false;
         opButtons[1].interactable = true;
-        ScoreText.text = _MemManage.ReadData_i("Score").ToString();
+        ScoreText.text = _MemManage.ReadData_i("Puan").ToString();
     }
 
     void SaveItemResult(string key, int Index)

@@ -38,12 +38,13 @@ public class MainMenu_Manager : MonoBehaviour
 
         //_MemManage.SaveData_String("Language", "EN");
 
+
         _ItemData.LoadLang();
         _LangReadData = _ItemData.ExportLangList();
         _LangDataMain.Add(_LangReadData[0]);
         LanguageDetect();
 
-        
+
     }
 
 

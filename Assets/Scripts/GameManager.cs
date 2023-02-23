@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _MemoryManage.SaveData_Int("LastPlayed", 5);
+        
         CreateEnemies();
         _Scene = SceneManager.GetActiveScene();
         _ItemData.LoadLang();
@@ -142,7 +143,7 @@ public class GameManager : MonoBehaviour
                     {
                         if (_Scene.buildIndex == _MemoryManage.ReadData_i("LastPlayed"))
                         {
-                            _MemoryManage.SaveData_Int("Score", _MemoryManage.ReadData_i("Score") + 600);
+                            _MemoryManage.SaveData_Int("Puan", _MemoryManage.ReadData_i("Puan") + 600);
                             _MemoryManage.SaveData_Int("LastPlayed", _MemoryManage.ReadData_i("LastPlayed") + 1);
                         }
 
@@ -151,7 +152,7 @@ public class GameManager : MonoBehaviour
                     {
                         if (_Scene.buildIndex == _MemoryManage.ReadData_i("LastPlayed"))
                         {
-                            _MemoryManage.SaveData_Int("Score", _MemoryManage.ReadData_i("Score") + 200);
+                            _MemoryManage.SaveData_Int("Puan", _MemoryManage.ReadData_i("Puan") + 200);
                             _MemoryManage.SaveData_Int("LastPlayed", _MemoryManage.ReadData_i("LastPlayed") + 1);
 
                         }
