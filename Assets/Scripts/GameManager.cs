@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     MathOps _MathOps = new MathOps();
     MemoryManagement _MemoryManage = new MemoryManagement();
     DataManagement _ItemData = new DataManagement();
+    AdManagement _AdManage = new AdManagement();
 
     Scene _Scene;
 
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    [Obsolete]
     void Start()
     {
         _MemoryManage.SaveData_Int("LastPlayed", 5);
@@ -75,6 +77,10 @@ public class GameManager : MonoBehaviour
         _LangReadData = _ItemData.ExportLangList();
         _LangDataMain.Add(_LangReadData[5]);
         LanguageDetect();
+
+        _AdManage.RequestInterstitial();
+        _AdManage.RequestRewardedAd();
+
     }
 
     private void LanguageDetect()
@@ -103,6 +109,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [Obsolete]
     void FightStatus()
     {
         if (isEndLine)
@@ -123,6 +130,8 @@ public class GameManager : MonoBehaviour
                 }
 
                 _Player.GetComponent<Animator>().SetBool("Attack", false);
+
+                _AdManage.ShowInterstitial();
 
                 if (CurrentCharCount < enemyCount || CurrentCharCount == enemyCount)
 
@@ -323,4 +332,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+    public void RewardedAd()
+    {
+        _AdManage.RequestRewardedAd();
+    }
 }

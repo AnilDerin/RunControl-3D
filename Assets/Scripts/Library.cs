@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using GoogleMobileAds.Api;
 
 namespace Anil
 {
@@ -337,6 +338,7 @@ namespace Anil
                 PlayerPrefs.SetFloat("MenuFX", .5f);
                 PlayerPrefs.SetFloat("GameMusic", .5f);
                 PlayerPrefs.SetString("Language", "TR");
+                PlayerPrefs.SetInt("InterstitialAdCount", 1);
             }
         }
     }
@@ -447,4 +449,123 @@ namespace Anil
 
 
 
+
+    public class AdManagement
+    {
+        private InterstitialAd interstitial;
+        private RewardedAd rewardedAd;
+
+        //INTERSTITIAL AD
+        [Obsolete]
+        public void RequestInterstitial()
+        {
+            string AdUnitID;
+#if UNITY_ANDROID
+            AdUnitID = "ca-app-pub-3149396282754207/3155064187";
+#elif UNITY_IPHONE
+            AdUnitID = "ca-app-pub-3149396282754207/4300624892";
+#else
+            AdUnitID ="unexcepted_platform";
+#endif
+
+            interstitial = new InterstitialAd(AdUnitID);
+            AdRequest request = new AdRequest.Builder().Build();
+            interstitial.LoadAd(request);
+
+            interstitial.OnAdClosed += HandleOnAdClosed;
+
+        }
+
+        [Obsolete]
+        void HandleOnAdClosed(object sender, EventArgs e)
+        {
+            interstitial.Destroy();
+            RequestInterstitial();
+        }
+
+        [Obsolete]
+        public void ShowInterstitial()
+        {
+
+            if (PlayerPrefs.GetInt("InterstitialAdCount") == 2)
+            {
+                if (interstitial.IsLoaded())
+                {
+                    PlayerPrefs.SetInt("InterstitialAdCount", 1);
+                    interstitial.Show();
+                }
+                else
+                {
+                    interstitial.Destroy();
+                    RequestInterstitial();
+                }
+            }
+
+            else
+            {
+                PlayerPrefs.SetInt("InterstitialAdCount", PlayerPrefs.GetInt("InterstitialAdCount") + 1);
+            }
+
+        }
+
+        //REWARDED AD
+
+        [Obsolete]
+        public void RequestRewardedAd()
+        {
+            string AdUnitID;
+#if UNITY_ANDROID
+            AdUnitID = "ca-app-pub-3149396282754207/7641104102";
+#elif UNITY_IPHONE
+            AdUnitID = "ca-app-pub-3149396282754207/6543644857";
+#else
+            AdUnitID ="unexcepted_platform";
+#endif
+
+            rewardedAd = new RewardedAd(AdUnitID);
+            AdRequest request = new AdRequest.Builder().Build();
+            rewardedAd.LoadAd(request);
+
+
+            rewardedAd.OnUserEarnedReward += HandleRewardEarned;
+            rewardedAd.OnAdClosed += HandleOnRewardedAdClosed;
+            rewardedAd.OnAdLoaded += HandleOnRewardedAdLoaded;
+
+        }
+
+
+        private void HandleRewardEarned(object sender, Reward e)
+        {
+            string type = e.Type;
+            double amount = e.Amount;
+
+            Debug.Log("Reward Earned: " + type + " -- " + amount);
+        }
+
+        [Obsolete]
+        private void HandleOnRewardedAdClosed(object sender, EventArgs e)
+        {
+            Debug.Log("Ad Closed:");
+            RequestRewardedAd();
+        }
+        private void HandleOnRewardedAdLoaded(object sender, EventArgs e)
+        {
+            Debug.Log("Ad Loaded:");
+
+        }
+
+        [Obsolete]
+        public void ShowRewardedAd()
+        {
+            if (rewardedAd.IsLoaded())
+            {
+                rewardedAd.Show();
+            }
+            else
+            {
+                rewardedAd.Destroy();
+                RequestRewardedAd();
+            }
+        }
+    }
 }

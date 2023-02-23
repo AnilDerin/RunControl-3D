@@ -10,6 +10,7 @@ public class MainMenu_Manager : MonoBehaviour
 {
     MemoryManagement _MemManage = new MemoryManagement();
     DataManagement _ItemData = new DataManagement();
+    AdManagement _AdManage = new AdManagement();
 
 
     public GameObject QuitPanel;
@@ -27,8 +28,7 @@ public class MainMenu_Manager : MonoBehaviour
 
     MathOps _MathOps = new MathOps();
 
-
-
+    [System.Obsolete]
     void Start()
     {
 
@@ -42,6 +42,8 @@ public class MainMenu_Manager : MonoBehaviour
         _LangReadData = _ItemData.ExportLangList();
         _LangDataMain.Add(_LangReadData[0]);
         LanguageDetect();
+
+        
     }
 
 
