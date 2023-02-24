@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Anil;
 using System;
@@ -12,6 +13,7 @@ public class MarketManager : MonoBehaviour, IStoreListener
 {
     private static IStoreController m_StoreController;
     private static IExtensionProvider m_StoreExtensionProvider;
+    public AudioSource ButtonSound;
 
     private static string Puan_250 = "puan250";
     private static string Puan_500 = "puan500";
@@ -36,6 +38,12 @@ public class MarketManager : MonoBehaviour, IStoreListener
         {
             InitializePurchasing();
         }
+    }
+
+    public void GoBack()
+    {
+        ButtonSound.Play();
+        SceneManager.LoadScene(0);
     }
 
     public void InitializePurchasing()
