@@ -19,7 +19,7 @@
   <li>Object Pooling</li>
   <li>PlayerPrefs and FileSystem data storage</li>
   <li>Multilanguage</li>
-  <li>Stimitiual and Rewarded ads (AdMob)</li>
+  <li>Interstitial and Rewarded ads (AdMob)</li>
   <li>In-App Purchases</li>
   <li>Multilanguage</li>
 </ul>
