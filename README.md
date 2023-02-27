@@ -28,7 +28,7 @@
 </h2>
 <h3>Main Menu</h3>
 <div style="display:flex;">
-    <img src="./images/1.png" alt="Onboard1" width="20%" height="20%">
+    <img src="./images/1.png" alt="Onboard1" width="23.3%" height="23.3%">
     <img src="./images/2.png" alt="Onboard2" width="20%" height="20%">
     <img src="./images/3.png" alt="Onboard3" width="20%" height="20%">
     <img src="./images/5.png" alt="Onboard4" width="20%" height="20%">
