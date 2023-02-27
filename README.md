@@ -28,14 +28,18 @@
 </h2>
 <h3>Main Menu</h3>
 <div style="display:flex;">
-    <img src="./images/Onboard1.png" alt="Onboard1" width="20%" height="20%">
-    <img src="./images/Onboard2.png" alt="Onboard2" width="20%" height="20%">
-    <img src="./images/Onboard3.png" alt="Onboard3" width="20%" height="20%">
+    <img src="./images/1.png" alt="Onboard1" width="20%" height="20%">
+    <img src="./images/2.png" alt="Onboard2" width="20%" height="20%">
+    <img src="./images/3.png" alt="Onboard3" width="20%" height="20%">
+    <img src="./images/5.png" alt="Onboard4" width="20%" height="20%">
 </div>
 <h3>In Game Screens</h3>
-<div style="display:flex;">
-    <img src="./images/SignIn.png" alt="SignIn" width="20%" height="20%">
-    <img src="./images/SignUp.png" alt="SignUp" width="20%" height="20%">
+<div style="display:flex; flex-direction:column;">
+    <img src="./images/_1.png" alt="Ingame1" width="20%" height="20%">
+    <img src="./images/_2.png" alt="Ingame2" width="20%" height="20%">
+    <img src="./images/_3.png" alt="Ingame3" width="20%" height="20%">
+    <img src="./images/_4.png" alt="Ingame4" width="20%" height="20%">
+    <img src="./images/_5.png" alt="Ingame5" width="20%" height="20%">
 </div>
 
 <h1> Installation </h1>
