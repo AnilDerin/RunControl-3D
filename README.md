@@ -46,6 +46,6 @@
 
 ### How to run the example?
 
-1. Clone this repo
-2. Open Unity 3D and load the project
+1. Clone this repo 
+2. Open Unity 3D File > Open Project > Select Run Control 3D from Unity Hub
 
