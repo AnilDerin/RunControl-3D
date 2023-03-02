@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _MemoryManage.SaveData_Int("LastPlayed", 5);
-        
+
         CreateEnemies();
         _Scene = SceneManager.GetActiveScene();
         _ItemData.LoadLang();
@@ -333,7 +333,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    [Obsolete]
     public void RewardedAd()
     {
         _AdManage.RequestRewardedAd();
